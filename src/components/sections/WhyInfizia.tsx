@@ -37,7 +37,7 @@ const PILLARS: {
   },
   {
     icon: Zap,
-    title: "Premier Red Hat Partner",
+    title: "Red Hat Partner",
     body: "Full-stack expertise across RHEL, OpenShift, Ansible, and OpenShift AI — at production scale, with named engineers.",
     accent: "text-redhat",
   },
