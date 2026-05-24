@@ -192,7 +192,7 @@ export function ProductShowcase({
                       {String(total).padStart(2, "0")}
                     </span>
                     <span className="h-px w-12 bg-white/10" />
-                    <span>iCON in action</span>
+                    <span>EyeCON in action</span>
                   </div>
                 </div>
 

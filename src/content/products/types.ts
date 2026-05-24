@@ -1,7 +1,7 @@
 /**
  * Shared content shape for flagship product pages.
  *
- * Each flagship product (iCON, VitaCare) supplies a `FlagshipProductContent`
+ * Each flagship product (EyeCON, VitaCare) supplies a `FlagshipProductContent`
  * object that drives every section of its page. This is also the canonical
  * source for the matching PPT/brochure deck — keep DEVLOG.md in sync.
  */
@@ -32,14 +32,14 @@ export type FlagshipFlowStep = {
 export type FlagshipUseCase = {
   /** Buyer persona name */
   title: string;
-  /** Why iCON/VitaCare maps to this persona */
+  /** Why EyeCON/VitaCare maps to this persona */
   body: string;
   /** Lucide icon for the persona card */
   icon: LucideIcon;
 };
 
 export type FlagshipCaseStudy = {
-  /** Short framing line — e.g., "A 30-rep B2B SaaS team replaced four tools with iCON." */
+  /** Short framing line — e.g., "A 30-rep B2B SaaS team replaced four tools with EyeCON." */
   intro: string;
   /** 2–4 stat cards — value + label */
   stats: { value: string; label: string }[];

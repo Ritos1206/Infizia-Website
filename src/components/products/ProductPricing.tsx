@@ -11,7 +11,7 @@ import { PRODUCT_PRICING, type PricingTier } from "@/content/pricing";
 import { cn } from "@/lib/utils";
 
 /**
- * Inline pricing section for product pages (iCON, VitaCare, iPOS).
+ * Inline pricing section for product pages (EyeCON, VitaCare, EyePOS).
  *
  * Reads tiers from `web/src/content/pricing.ts`. Renders nothing if the
  * product slug isn't in the pricing matrix — non-subscription products

@@ -28,6 +28,13 @@ export type Product = {
   vertical: ProductVertical;
   blurb: string;
   flagship?: boolean;
+  /**
+   * `true` when the product has a dedicated, hand-built page under
+   * `/products/<slug>/page.tsx`. The dynamic `[slug]` route excludes these
+   * so Next.js doesn't double-prerender. Currently true for the three
+   * subscription products: EyeCON, VitaCare, EyePOS.
+   */
+  bespokePage?: boolean;
 };
 
 export type ProductVertical =
@@ -44,10 +51,11 @@ export type ProductVertical =
 
 export const PRODUCTS: Product[] = [
   {
-    slug: "icon",
-    name: "iCON",
+    slug: "eyecon",
+    name: "EyeCON",
     vertical: "Sales",
     flagship: true,
+    bespokePage: true,
     blurb:
       "All-in-one mobile-first AI sales platform that unifies company research, calling, and meeting intelligence around a single Lead record.",
   },
@@ -56,6 +64,7 @@ export const PRODUCTS: Product[] = [
     name: "VitaCare",
     vertical: "Healthcare",
     flagship: true,
+    bespokePage: true,
     blurb:
       "AI-powered digital clinic platform for individual doctors — appointments, telehealth, electronic health records, digital prescriptions, automated reminders, and an AI call receptionist.",
   },
@@ -120,9 +129,11 @@ export const PRODUCTS: Product[] = [
       "Intelligent document processing for invoices, forms, contracts — automating extraction and validation.",
   },
   {
-    slug: "ipos",
-    name: "iPOS",
+    slug: "eyepos",
+    name: "EyePOS",
     vertical: "Finance & Operations",
+    flagship: true,
+    bespokePage: true,
     blurb:
       "Unified point-of-sale, inventory, and accounting platform for multi-location retail, wholesale, and service businesses — GST-compliant and real-time.",
   },

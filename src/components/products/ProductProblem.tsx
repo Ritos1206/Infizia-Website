@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Problem-statement section.
- * Sets up the wedge — sells the pain before iCON sells the cure.
+ * Sets up the wedge — sells the pain before EyeCON sells the cure.
  */
 export function ProductProblem({
   kicker,

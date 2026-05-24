@@ -99,11 +99,11 @@ export function HomeHero() {
               </span>
               <span className="h-px w-8 bg-white/10" />
               <Link
-                href="/products/icon"
+                href="/products/eyecon"
                 className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
               >
                 <Sparkles className="h-3 w-3 text-brand-teal" />
-                iCON
+                EyeCON
               </Link>
               <Link
                 href="/products/vitacare"

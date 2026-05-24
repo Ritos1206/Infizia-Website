@@ -39,8 +39,8 @@ export type ProductPricing = {
  */
 export const PRODUCT_PRICING: ProductPricing[] = [
   {
-    productSlug: "icon",
-    productName: "iCON",
+    productSlug: "eyecon",
+    productName: "EyeCON",
     vertical: "Sales",
     tagline: "Mobile-first AI sales platform · per-user/month",
     tiers: [
@@ -147,8 +147,8 @@ export const PRODUCT_PRICING: ProductPricing[] = [
     ],
   },
   {
-    productSlug: "ipos",
-    productName: "iPOS",
+    productSlug: "eyepos",
+    productName: "EyePOS",
     vertical: "Finance & Operations",
     tagline: "Account inventory solution · per-counter/month",
     tiers: [

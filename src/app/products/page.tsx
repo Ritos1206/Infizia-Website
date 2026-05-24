@@ -19,7 +19,7 @@ export default function ProductsIndexPage() {
         kicker="Product Ecosystem"
         title="The cognitive stack, end to end."
         lede="Twelve products. Nine industries. One unified intelligence layer — purpose-built so your teams can move faster, decide smarter, and operate at machine scale."
-        primaryCTA={{ label: "Explore iCON", href: "/products/icon" }}
+        primaryCTA={{ label: "Explore EyeCON", href: "/products/eyecon" }}
         secondaryCTA={{ label: "Explore VitaCare", href: "/products/vitacare" }}
       />
 

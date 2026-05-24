@@ -17,7 +17,7 @@ const flagshipDetails: Record<
     accentText: string;
   }
 > = {
-  icon: {
+  eyecon: {
     accent: "from-brand-teal/40 via-brand-teal/0 to-brand-teal/0",
     accentBg: "bg-brand-teal/10",
     accentText: "text-brand-teal",
@@ -39,6 +39,17 @@ const flagshipDetails: Record<
       "AI call receptionist & WhatsApp chatbot for bookings",
     ],
   },
+  eyepos: {
+    accent: "from-brand-blue/40 via-brand-blue/0 to-brand-blue/0",
+    accentBg: "bg-brand-blue/10",
+    accentText: "text-brand-blue",
+    bullets: [
+      "Point-of-sale billing with GST & e-invoicing built in",
+      "Inventory & accounting auto-reconciled with every sale",
+      "WhatsApp-native receipts & customer reorder nudges",
+      "Multi-location dashboards · branch-wise P&L in real time",
+    ],
+  },
 };
 
 export function FlagshipsSpotlight() {
@@ -47,12 +58,12 @@ export function FlagshipsSpotlight() {
       <Container>
         <SectionHeader
           kicker="Flagship Products"
-          title="Two products, one cognitive system."
-          lede="iCON and VitaCare are the proving ground for the Infizia platform — built mobile-first, AI-native, and engineered for the workflows that drive revenue and care."
+          title="Three products, one cognitive system."
+          lede="EyeCON, VitaCare, and EyePOS are the proving ground for the Infizia platform — built mobile-first, AI-native, and engineered for the workflows that drive revenue, care, and the counter."
           gradient
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {FLAGSHIP_PRODUCTS.map((p, i) => {
             const detail = flagshipDetails[p.slug];
             return (

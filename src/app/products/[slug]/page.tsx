@@ -6,10 +6,10 @@ import { PRODUCTS } from "@/lib/constants";
 type Params = { slug: string };
 
 export function generateStaticParams() {
-  // Flagship products (iCON, VitaCare) have their own dedicated pages under
-  // /products/icon and /products/vitacare. Skip them in the dynamic [slug]
-  // route so we don't double-prerender.
-  return PRODUCTS.filter((p) => !p.flagship).map((p) => ({ slug: p.slug }));
+  // Products with bespoke pages (EyeCON, VitaCare, EyePOS — the three
+  // subscription products) have their own dedicated route handlers under
+  // /products/<slug>/. Skip them here so Next.js doesn't double-prerender.
+  return PRODUCTS.filter((p) => !p.bespokePage).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
