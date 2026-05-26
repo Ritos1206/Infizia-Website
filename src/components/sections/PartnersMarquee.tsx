@@ -11,7 +11,7 @@ export function PartnersMarquee() {
       <Container>
         <Reveal>
           <p className="text-center font-mono text-[11px] tracking-[0.25em] text-text-faint uppercase mb-8">
-            The technology partners we build on
+            The technology stack we build on
           </p>
         </Reveal>
       </Container>

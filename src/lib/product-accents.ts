@@ -14,7 +14,8 @@ export type ProductAccent =
   | "blue"
   | "indigo"
   | "amber"
-  | "violet";
+  | "violet"
+  | "rose";
 
 export type AccentTheme = {
   /** Solid text color (e.g., headings, link arrows) */
@@ -118,5 +119,18 @@ export const ACCENTS: Record<ProductAccent, AccentTheme> = {
     stepPill: "bg-brand-violet/15 text-brand-violet border-brand-violet/30",
     progressFrom: "from-brand-violet",
     progressTo: "to-brand-indigo",
+  },
+  rose: {
+    text: "text-brand-rose",
+    bg: "bg-brand-rose",
+    bgSoft: "bg-brand-rose/10",
+    border: "border-brand-rose/30",
+    glow: "bg-brand-rose/[0.10]",
+    shadow: "shadow-glow-rose",
+    topLine: "from-brand-rose/60 via-brand-rose/0 to-brand-rose/0",
+    hoverBorder: "hover:border-brand-rose/40",
+    stepPill: "bg-brand-rose/15 text-brand-rose border-brand-rose/30",
+    progressFrom: "from-brand-rose",
+    progressTo: "to-brand-violet",
   },
 };

@@ -94,11 +94,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "intellix",
-    name: "Intellix AI",
-    shortName: "Intellix",
+    name: "Intellix",
     vertical: "Customer Support",
+    bespokePage: true,
     blurb:
-      "Intelligent AI call-center platform that automates customer conversations and reduces handling time.",
+      "AI-powered Voice and Chat Assistant Platform that unifies outbound + inbound calls, multilingual chat, knowledge base, and database queries on one dashboard.",
   },
   {
     slug: "learnova",

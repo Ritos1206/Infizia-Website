@@ -26,6 +26,8 @@
   --color-brand-amber-soft: #fcd34d;
   --color-brand-violet: #a78bfa;
   --color-brand-violet-soft: #c4b5fd;
+  --color-brand-rose: #fb7185;
+  --color-brand-rose-soft: #fda4af;
 
   --color-redhat: #ee0000;
 
@@ -54,6 +56,7 @@
   --shadow-glow-indigo: 0 0 32px -8px rgba(129, 140, 248, 0.5);
   --shadow-glow-amber: 0 0 32px -8px rgba(251, 191, 36, 0.5);
   --shadow-glow-violet: 0 0 32px -8px rgba(167, 139, 250, 0.5);
+  --shadow-glow-rose: 0 0 32px -8px rgba(251, 113, 133, 0.5);
   --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
     0 8px 32px -12px rgba(0, 0, 0, 0.6);
 
@@ -237,6 +240,9 @@ body {
 }
 @utility glow-violet {
   box-shadow: var(--shadow-glow-violet);
+}
+@utility glow-rose {
+  box-shadow: var(--shadow-glow-rose);
 }
 
 @utility font-display {
