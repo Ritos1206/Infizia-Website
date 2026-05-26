@@ -5,7 +5,10 @@ import { cn } from "@/lib/utils";
  * Infizia logo system.
  *
  * - "horizontal" (default) — compact mark + wordmark for header / inline use.
- *   Uses inline SVG for crisp scaling and brand-color treatment at any size.
+ *   Both elements are precision-cropped out of the brand PNG
+ *   (`infizia-logo-light.png`) so the typography exactly matches the original
+ *   brand asset (no synthetic SVG fallback). They sit on a shared baseline
+ *   and use the same height so they read as one mark.
  *
  * - "stacked" — full original PNG (mark + INFIZIA + INFINITE INTELLIGENCE
  *   tagline) for footer and large brand-display contexts.
@@ -35,77 +38,48 @@ export function InfiziaLogo({
   }
 
   if (variant === "wordmark") {
-    return <Wordmark className={cn("h-5 w-auto", className)} />;
+    return (
+      <Image
+        src="/brand/infizia-wordmark-light.png"
+        alt="Infizia"
+        width={340}
+        height={62}
+        priority={priority}
+        className={cn("h-5 w-auto select-none", className)}
+      />
+    );
   }
 
-  // horizontal
+  // ── horizontal ─────────────────────────────────────────────────────────────
+  // Mark + wordmark side by side, both precision-cropped from the original
+  // brand PNG (`infizia-logo-light.png`) so typeface, weight, and color split
+  // (INF white · I blue · ZIA green) are pixel-perfect to the brand asset.
+  //
+  // Sizing is responsive: slightly more compact on mobile (where the header
+  // is h-16 = 64px) and bumped on desktop (h-20 = 80px). Both elements share
+  // the same height ratio so they always sit on a balanced optical baseline
+  // — no synthetic SVG approximation, no padding mismatch.
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <Mark className="h-7 w-7 shrink-0" />
-      <Wordmark className="h-[18px] w-auto" />
+      <Image
+        src="/brand/infizia-mark-light.png"
+        alt=""
+        aria-hidden
+        width={112}
+        height={74}
+        priority={priority}
+        className="h-9 w-auto shrink-0 select-none lg:h-10"
+      />
+      <Image
+        src="/brand/infizia-wordmark-light.png"
+        alt=""
+        aria-hidden
+        width={340}
+        height={62}
+        priority={priority}
+        className="relative -top-[3px] h-6 w-auto select-none lg:h-7"
+      />
       <span className="sr-only">Infizia — Infinite Intelligence</span>
     </span>
-  );
-}
-
-/**
- * Brand mark — two interlocking diamond loops in brand green, echoing
- * the infinity-like geometric form of the original logo. Designed to
- * scale to small sizes without detail loss (so we drop the chip/brain
- * detail that only reads at large sizes — full PNG is used there).
- */
-function Mark({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden
-    >
-      <g
-        stroke="var(--color-brand-green)"
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        fill="none"
-      >
-        {/* Left diamond */}
-        <path d="M3 16 L11 8 L19 16 L11 24 Z" />
-        {/* Right diamond, overlapping the left to form an infinity-like loop */}
-        <path d="M13 16 L21 8 L29 16 L21 24 Z" />
-      </g>
-      {/* Small core dot at the overlap, brand-teal */}
-      <circle cx="16" cy="16" r="1.6" fill="var(--color-brand-teal)" />
-    </svg>
-  );
-}
-
-/**
- * Brand wordmark — INFIZIA with white INF, brand-blue I, brand-green ZIA.
- * Built from native text for perfect rendering at any size.
- */
-function Wordmark({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 200 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-label="Infizia"
-    >
-      <text
-        x="0"
-        y="25"
-        fontFamily="var(--font-display)"
-        fontSize="28"
-        fontWeight="700"
-        letterSpacing="-0.01em"
-      >
-        <tspan fill="var(--color-text-primary)">INF</tspan>
-        <tspan fill="var(--color-brand-blue)">I</tspan>
-        <tspan fill="var(--color-brand-green)">ZIA</tspan>
-      </text>
-    </svg>
   );
 }

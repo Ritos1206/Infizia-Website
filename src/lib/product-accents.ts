@@ -8,7 +8,13 @@
  * components.
  */
 
-export type ProductAccent = "teal" | "green" | "blue";
+export type ProductAccent =
+  | "teal"
+  | "green"
+  | "blue"
+  | "indigo"
+  | "amber"
+  | "violet";
 
 export type AccentTheme = {
   /** Solid text color (e.g., headings, link arrows) */
@@ -73,5 +79,44 @@ export const ACCENTS: Record<ProductAccent, AccentTheme> = {
     stepPill: "bg-brand-blue/15 text-brand-blue border-brand-blue/30",
     progressFrom: "from-brand-blue",
     progressTo: "to-brand-teal",
+  },
+  indigo: {
+    text: "text-brand-indigo",
+    bg: "bg-brand-indigo",
+    bgSoft: "bg-brand-indigo/10",
+    border: "border-brand-indigo/30",
+    glow: "bg-brand-indigo/[0.10]",
+    shadow: "shadow-glow-indigo",
+    topLine: "from-brand-indigo/60 via-brand-indigo/0 to-brand-indigo/0",
+    hoverBorder: "hover:border-brand-indigo/40",
+    stepPill: "bg-brand-indigo/15 text-brand-indigo border-brand-indigo/30",
+    progressFrom: "from-brand-indigo",
+    progressTo: "to-brand-blue",
+  },
+  amber: {
+    text: "text-brand-amber",
+    bg: "bg-brand-amber",
+    bgSoft: "bg-brand-amber/10",
+    border: "border-brand-amber/30",
+    glow: "bg-brand-amber/[0.10]",
+    shadow: "shadow-glow-amber",
+    topLine: "from-brand-amber/60 via-brand-amber/0 to-brand-amber/0",
+    hoverBorder: "hover:border-brand-amber/40",
+    stepPill: "bg-brand-amber/15 text-brand-amber border-brand-amber/30",
+    progressFrom: "from-brand-amber",
+    progressTo: "to-brand-indigo",
+  },
+  violet: {
+    text: "text-brand-violet",
+    bg: "bg-brand-violet",
+    bgSoft: "bg-brand-violet/10",
+    border: "border-brand-violet/30",
+    glow: "bg-brand-violet/[0.10]",
+    shadow: "shadow-glow-violet",
+    topLine: "from-brand-violet/60 via-brand-violet/0 to-brand-violet/0",
+    hoverBorder: "hover:border-brand-violet/40",
+    stepPill: "bg-brand-violet/15 text-brand-violet border-brand-violet/30",
+    progressFrom: "from-brand-violet",
+    progressTo: "to-brand-indigo",
   },
 };

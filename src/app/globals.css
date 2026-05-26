@@ -19,6 +19,14 @@
   --color-brand-teal: #5eead4;
   --color-brand-teal-soft: #99f6e4;
 
+  /* Per-product extension palette (Phase 4) — non-flagship product accents */
+  --color-brand-indigo: #818cf8;
+  --color-brand-indigo-soft: #a5b4fc;
+  --color-brand-amber: #fbbf24;
+  --color-brand-amber-soft: #fcd34d;
+  --color-brand-violet: #a78bfa;
+  --color-brand-violet-soft: #c4b5fd;
+
   --color-redhat: #ee0000;
 
   --color-text-primary: #ffffff;
@@ -43,6 +51,9 @@
   --shadow-glow-green: 0 0 32px -8px rgba(0, 210, 106, 0.45);
   --shadow-glow-blue: 0 0 32px -8px rgba(0, 150, 255, 0.45);
   --shadow-glow-teal: 0 0 32px -8px rgba(94, 234, 212, 0.45);
+  --shadow-glow-indigo: 0 0 32px -8px rgba(129, 140, 248, 0.5);
+  --shadow-glow-amber: 0 0 32px -8px rgba(251, 191, 36, 0.5);
+  --shadow-glow-violet: 0 0 32px -8px rgba(167, 139, 250, 0.5);
   --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
     0 8px 32px -12px rgba(0, 0, 0, 0.6);
 
@@ -218,6 +229,15 @@ body {
 @utility glow-teal {
   box-shadow: var(--shadow-glow-teal);
 }
+@utility glow-indigo {
+  box-shadow: var(--shadow-glow-indigo);
+}
+@utility glow-amber {
+  box-shadow: var(--shadow-glow-amber);
+}
+@utility glow-violet {
+  box-shadow: var(--shadow-glow-violet);
+}
 
 @utility font-display {
   font-family: var(--font-display);
@@ -276,6 +296,24 @@ body {
   background: rgba(94, 234, 212, 0.08);
   border: 1px solid rgba(94, 234, 212, 0.2);
   border-radius: 999px;
+}
+
+/* Header logo — pulled left toward the screen edge.
+   `container-page` adds horizontal padding (24px / 32px / 48px); we offset
+   most of it on the logo only, leaving ~8px breathing room so the mark
+   never clips off-screen on any viewport. */
+.header-logo-shift {
+  margin-left: -1rem;        /* mobile: 24px padding − 16px = 8px from edge */
+}
+@media (min-width: 768px) {
+  .header-logo-shift {
+    margin-left: -1.5rem;    /* md: 32px padding − 24px = 8px from edge */
+  }
+}
+@media (min-width: 1280px) {
+  .header-logo-shift {
+    margin-left: -2.5rem;    /* xl: 48px padding − 40px = 8px from edge */
+  }
 }
 
 .kicker-dot {

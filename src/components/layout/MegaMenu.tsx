@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -37,6 +38,23 @@ import {
 } from "@/lib/constants";
 
 type MenuKey = "products" | "solutions" | "services" | "red-hat" | "technology";
+type NavKey = MenuKey | "resources" | "company";
+
+/* ============================================================================
+   Route → active-section detection
+   ============================================================================ */
+
+/** Maps a URL pathname to the top-level nav key the user is currently inside. */
+function getActiveNavKey(pathname: string): NavKey | null {
+  if (pathname.startsWith("/products")) return "products";
+  if (pathname.startsWith("/solutions")) return "solutions";
+  if (pathname.startsWith("/services")) return "services";
+  if (pathname.startsWith("/red-hat")) return "red-hat";
+  if (pathname.startsWith("/technology")) return "technology";
+  if (pathname.startsWith("/resources")) return "resources";
+  if (pathname.startsWith("/company")) return "company";
+  return null;
+}
 
 /* ============================================================================
    Vertical → icon mapping (for industry grouping in Products panel + reuse)
@@ -62,6 +80,8 @@ const VERTICAL_ICONS: Record<ProductVertical, LucideIcon> = {
 export function MegaMenu() {
   const [open, setOpen] = useState<MenuKey | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = usePathname() ?? "";
+  const activeKey = getActiveNavKey(pathname);
 
   function openMenu(key: MenuKey) {
     if (closeTimer.current) {
@@ -91,44 +111,46 @@ export function MegaMenu() {
       <MenuTrigger
         label="Products"
         isOpen={open === "products"}
+        isActive={activeKey === "products"}
         onHover={() => openMenu("products")}
       />
       <MenuTrigger
         label="Solutions"
         isOpen={open === "solutions"}
+        isActive={activeKey === "solutions"}
         onHover={() => openMenu("solutions")}
       />
       <MenuTrigger
         label="Services"
         isOpen={open === "services"}
+        isActive={activeKey === "services"}
         onHover={() => openMenu("services")}
       />
       <MenuTrigger
         label="Red Hat"
-        accent
         isOpen={open === "red-hat"}
+        isActive={activeKey === "red-hat"}
         onHover={() => openMenu("red-hat")}
       />
       <MenuTrigger
         label="Technology"
         isOpen={open === "technology"}
+        isActive={activeKey === "technology"}
         onHover={() => openMenu("technology")}
       />
 
-      <Link
+      <FlatNavLink
         href="/resources"
-        onMouseEnter={() => setOpen(null)}
-        className="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors"
-      >
-        Resources
-      </Link>
-      <Link
+        label="Resources"
+        isActive={activeKey === "resources"}
+        onHover={() => setOpen(null)}
+      />
+      <FlatNavLink
         href="/company/about"
-        onMouseEnter={() => setOpen(null)}
-        className="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors"
-      >
-        Company
-      </Link>
+        label="Company"
+        isActive={activeKey === "company"}
+        onHover={() => setOpen(null)}
+      />
 
       <AnimatePresence>
         {open && (
@@ -157,23 +179,21 @@ export function MegaMenu() {
 function MenuTrigger({
   label,
   isOpen,
+  isActive,
   onHover,
-  accent,
 }: {
   label: string;
   isOpen: boolean;
+  isActive?: boolean;
   onHover: () => void;
-  accent?: boolean;
 }) {
+  const highlighted = isOpen || isActive;
   return (
     <button
       onMouseEnter={onHover}
       className={cn(
-        "inline-flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors",
-        accent
-          ? "text-brand-teal hover:text-brand-teal-soft"
-          : "text-text-secondary hover:text-white",
-        isOpen && (accent ? "text-brand-teal-soft" : "text-white")
+        "relative inline-flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors",
+        highlighted ? "text-white" : "text-text-secondary hover:text-white"
       )}
     >
       {label}
@@ -183,7 +203,45 @@ function MenuTrigger({
           isOpen && "rotate-180"
         )}
       />
+      {isActive && <ActiveIndicator />}
     </button>
+  );
+}
+
+/** Plain Link (no panel) for top-level routes like Resources / Company. */
+function FlatNavLink({
+  href,
+  label,
+  isActive,
+  onHover,
+}: {
+  href: string;
+  label: string;
+  isActive?: boolean;
+  onHover?: () => void;
+}) {
+  return (
+    <Link
+      href={href}
+      onMouseEnter={onHover}
+      className={cn(
+        "relative px-4 py-2 text-sm font-medium transition-colors",
+        isActive ? "text-white" : "text-text-secondary hover:text-white"
+      )}
+    >
+      {label}
+      {isActive && <ActiveIndicator />}
+    </Link>
+  );
+}
+
+/** Teal underline rendered beneath an active nav item. */
+function ActiveIndicator() {
+  return (
+    <span
+      aria-hidden
+      className="pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand-teal shadow-[0_0_10px_rgba(94,234,212,0.6)]"
+    />
   );
 }
 

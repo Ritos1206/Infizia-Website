@@ -29,6 +29,7 @@ export default function VitaCareProductPage() {
         visual={<VitacareCalendarMockup />}
         brochureHref="/brochures/vitacare.pdf"
         hasPricing
+        flagship
       />
 
       {/* 2. Problem — 5 clinic tools convergence visual */}

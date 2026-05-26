@@ -29,6 +29,7 @@ export default function EyeposProductPage() {
         visual={<EyeposCounterMockup />}
         brochureHref="/brochures/eyepos.pdf"
         hasPricing
+        flagship
       />
 
       {/* 2. Problem — 5-tools convergence visual (retail/finance edition) */}

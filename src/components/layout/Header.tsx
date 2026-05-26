@@ -33,7 +33,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
           <Link
             href="/"
-            className="inline-flex items-center"
+            className="header-logo-shift inline-flex items-center"
             aria-label="Infizia home"
           >
             <InfiziaLogo priority />

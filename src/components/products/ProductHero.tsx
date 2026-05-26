@@ -10,14 +10,14 @@ import { ACCENTS, type ProductAccent } from "@/lib/product-accents";
 import { cn } from "@/lib/utils";
 
 /**
- * Flagship product hero.
+ * Product hero — used by both flagship and standard product pages.
  *
  * Two layouts:
  *  - When `visual` is provided → 2-col split (copy left, visual right)
  *  - When `visual` is omitted   → centered single-column copy
  *
  * Sections always rendered:
- *  - Vertical · Flagship pill kicker
+ *  - Vertical pill kicker (prefixed with "Flagship · " when `flagship` is true)
  *  - Massive product name
  *  - Brand-accent tagline
  *  - Positioning paragraph
@@ -33,6 +33,7 @@ export function ProductHero({
   visual,
   brochureHref = "#",
   hasPricing = false,
+  flagship = false,
 }: {
   vertical: string;
   name: string;
@@ -53,6 +54,11 @@ export function ProductHero({
    * "Custom pricing — book a demo".
    */
   hasPricing?: boolean;
+  /**
+   * When true, the kicker prefixes the vertical with "Flagship · ".
+   * Standard products (Phase 4) leave this off and show just the vertical.
+   */
+  flagship?: boolean;
 }) {
   const a = ACCENTS[accent];
   const hasVisual = !!visual;
@@ -106,7 +112,7 @@ export function ProductHero({
                     a.text,
                   )}
                 >
-                  Flagship · {vertical}
+                  {flagship ? `Flagship · ${vertical}` : vertical}
                 </span>
               </div>
             </motion.div>

@@ -72,6 +72,7 @@ export const PRODUCTS: Product[] = [
     slug: "convenor",
     name: "Convenor",
     vertical: "HR & Workforce",
+    bespokePage: true,
     blurb:
       "AI-driven hiring platform spanning resume screening, candidate ranking, and onboarding workflows.",
   },
@@ -79,13 +80,15 @@ export const PRODUCTS: Product[] = [
     slug: "performix",
     name: "Performix",
     vertical: "HR & Workforce",
+    bespokePage: true,
     blurb:
-      "Smart employee appraisal, rewards, and feedback system with structured multi-level approvals.",
+      "Smart employee assessment, rewards, and feedback system with structured multi-level approvals.",
   },
   {
     slug: "meetrix",
     name: "Meetrix",
     vertical: "HR & Workforce",
+    bespokePage: true,
     blurb:
       "AI-powered meeting intelligence — real-time transcripts, automated summaries, and actionable insights.",
   },

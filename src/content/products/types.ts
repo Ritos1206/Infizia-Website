@@ -45,6 +45,55 @@ export type FlagshipCaseStudy = {
   stats: { value: string; label: string }[];
 };
 
+/**
+ * Slimmer content shape for non-flagship product pages (Phase 4).
+ *
+ * Drops the flagship-only sections (`flow`, `caseStudy`) since standard
+ * products express their narrative through their bespoke visual rather than
+ * a scroll-pinned 5-step flow + a case study.
+ *
+ * The features list reuses `FlagshipFeature` (icon + title + body) — the
+ * shape is identical; only the count is typically smaller (5–8 items).
+ *
+ * Each standard product also surfaces its own bespoke visual element via
+ * the page composition; the content type doesn't constrain that.
+ */
+export type StandardProductContent = {
+  slug: string;
+  name: string;
+  vertical: string;
+  accent: ProductAccent;
+
+  /** One short tagline shown in the hero */
+  tagline: string;
+
+  /** 2–3 sentence positioning paragraph */
+  positioning: string;
+
+  /** Problem statement — 3–4 sentences, sets up the wedge */
+  problem: {
+    kicker: string;
+    title: string;
+    body: string;
+  };
+
+  /** Features grid — 5–8 features */
+  features: {
+    kicker: string;
+    title: string;
+    lede: string;
+    items: FlagshipFeature[];
+  };
+
+  /** Use case / target buyer cards (2–3) */
+  useCases: {
+    kicker: string;
+    title: string;
+    lede: string;
+    items: FlagshipUseCase[];
+  };
+};
+
 export type FlagshipProductContent = {
   slug: string;
   name: string;

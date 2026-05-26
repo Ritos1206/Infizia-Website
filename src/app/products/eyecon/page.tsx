@@ -29,6 +29,7 @@ export default function EyeconProductPage() {
         visual={<EyeconPhoneMockup />}
         brochureHref="/brochures/eyecon.pdf"
         hasPricing
+        flagship
       />
 
       {/* 2. Problem — 5-tools convergence visual */}
