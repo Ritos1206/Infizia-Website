@@ -102,34 +102,36 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "learnova",
-    name: "Learnova AI",
-    shortName: "Learnova",
+    name: "Learnova",
     vertical: "Education",
+    bespokePage: true,
     blurb:
-      "AI course generator that turns any document, video, or web content into structured learning paths and assessments.",
+      "AI course generator that turns any topic into a complete, personalized learning experience — courses, practice questions, live quizzes, mock tests, and real-time doubt resolution.",
   },
   {
     slug: "lms",
     name: "LMS",
     vertical: "Education",
+    bespokePage: true,
     blurb:
-      "Scalable learning management system for enterprises, institutions, and training organizations.",
+      "Comprehensive e-learning platform for educators and institutions — courses, live classes, AI-driven recommendations, quizzes, certifications, and community on one platform.",
   },
   {
     slug: "ecommerce",
     name: "Custom E-Commerce",
     shortName: "E-Commerce",
     vertical: "E-Commerce",
+    bespokePage: true,
     blurb:
-      "Multi-vendor commerce platform with native WhatsApp integration and an AI engagement chatbot.",
+      "Fully customizable, scalable AI-powered commerce platform for D2C brands, aggregators, and niche marketplaces — storefront to delivery, with intelligent automation built in.",
   },
   {
     slug: "documind",
-    name: "DocuMind AI",
-    shortName: "DocuMind",
+    name: "DocuMind",
     vertical: "Finance & Operations",
+    bespokePage: true,
     blurb:
-      "Intelligent document processing for invoices, forms, contracts — automating extraction and validation.",
+      "AI-powered intelligent document processing — every invoice, form, and contract read, validated against your business rules, and auto-posted to your ERP.",
   },
   {
     slug: "eyepos",
@@ -142,19 +144,19 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "infera",
-    name: "Infera AI",
-    shortName: "Infera",
+    name: "Infera",
     vertical: "Intelligence & Research",
+    bespokePage: true,
     blurb:
-      "AI company intelligence — deep business insights and competitive analysis from minimal inputs.",
+      "AI-powered sales intelligence — type a company name, get a deep-research brief in minutes: decision makers, cloud roadmap, cloud-native funding match, and ready-to-send outreach.",
   },
   {
     slug: "opssight",
-    name: "OpsSight AI",
-    shortName: "OpsSight",
+    name: "OpsSight",
     vertical: "Industrial Intelligence & IoT",
+    bespokePage: true,
     blurb:
-      "AI industrial intelligence with IoT sensor monitoring, anomaly detection, and decision support — initial focus on mining.",
+      "AI-driven industrial intelligence — real-time visibility across every sensor, AI anomaly detection, predictive maintenance, and contextual decision support. Mining-first, extends to manufacturing and utilities.",
   },
   {
     slug: "enews",

@@ -15,7 +15,13 @@ export type ProductAccent =
   | "indigo"
   | "amber"
   | "violet"
-  | "rose";
+  | "rose"
+  | "fuchsia"
+  | "orange"
+  | "lime"
+  | "cyan"
+  | "sky"
+  | "emerald";
 
 export type AccentTheme = {
   /** Solid text color (e.g., headings, link arrows) */
@@ -132,5 +138,83 @@ export const ACCENTS: Record<ProductAccent, AccentTheme> = {
     stepPill: "bg-brand-rose/15 text-brand-rose border-brand-rose/30",
     progressFrom: "from-brand-rose",
     progressTo: "to-brand-violet",
+  },
+  fuchsia: {
+    text: "text-brand-fuchsia",
+    bg: "bg-brand-fuchsia",
+    bgSoft: "bg-brand-fuchsia/10",
+    border: "border-brand-fuchsia/30",
+    glow: "bg-brand-fuchsia/[0.10]",
+    shadow: "shadow-glow-fuchsia",
+    topLine: "from-brand-fuchsia/60 via-brand-fuchsia/0 to-brand-fuchsia/0",
+    hoverBorder: "hover:border-brand-fuchsia/40",
+    stepPill: "bg-brand-fuchsia/15 text-brand-fuchsia border-brand-fuchsia/30",
+    progressFrom: "from-brand-fuchsia",
+    progressTo: "to-brand-violet",
+  },
+  orange: {
+    text: "text-brand-orange",
+    bg: "bg-brand-orange",
+    bgSoft: "bg-brand-orange/10",
+    border: "border-brand-orange/30",
+    glow: "bg-brand-orange/[0.10]",
+    shadow: "shadow-glow-orange",
+    topLine: "from-brand-orange/60 via-brand-orange/0 to-brand-orange/0",
+    hoverBorder: "hover:border-brand-orange/40",
+    stepPill: "bg-brand-orange/15 text-brand-orange border-brand-orange/30",
+    progressFrom: "from-brand-orange",
+    progressTo: "to-brand-amber",
+  },
+  lime: {
+    text: "text-brand-lime",
+    bg: "bg-brand-lime",
+    bgSoft: "bg-brand-lime/10",
+    border: "border-brand-lime/30",
+    glow: "bg-brand-lime/[0.10]",
+    shadow: "shadow-glow-lime",
+    topLine: "from-brand-lime/60 via-brand-lime/0 to-brand-lime/0",
+    hoverBorder: "hover:border-brand-lime/40",
+    stepPill: "bg-brand-lime/15 text-brand-lime border-brand-lime/30",
+    progressFrom: "from-brand-lime",
+    progressTo: "to-brand-green",
+  },
+  cyan: {
+    text: "text-brand-cyan",
+    bg: "bg-brand-cyan",
+    bgSoft: "bg-brand-cyan/10",
+    border: "border-brand-cyan/30",
+    glow: "bg-brand-cyan/[0.10]",
+    shadow: "shadow-glow-cyan",
+    topLine: "from-brand-cyan/60 via-brand-cyan/0 to-brand-cyan/0",
+    hoverBorder: "hover:border-brand-cyan/40",
+    stepPill: "bg-brand-cyan/15 text-brand-cyan border-brand-cyan/30",
+    progressFrom: "from-brand-cyan",
+    progressTo: "to-brand-sky",
+  },
+  sky: {
+    text: "text-brand-sky",
+    bg: "bg-brand-sky",
+    bgSoft: "bg-brand-sky/10",
+    border: "border-brand-sky/30",
+    glow: "bg-brand-sky/[0.10]",
+    shadow: "shadow-glow-sky",
+    topLine: "from-brand-sky/60 via-brand-sky/0 to-brand-sky/0",
+    hoverBorder: "hover:border-brand-sky/40",
+    stepPill: "bg-brand-sky/15 text-brand-sky border-brand-sky/30",
+    progressFrom: "from-brand-sky",
+    progressTo: "to-brand-cyan",
+  },
+  emerald: {
+    text: "text-brand-emerald",
+    bg: "bg-brand-emerald",
+    bgSoft: "bg-brand-emerald/10",
+    border: "border-brand-emerald/30",
+    glow: "bg-brand-emerald/[0.10]",
+    shadow: "shadow-glow-emerald",
+    topLine: "from-brand-emerald/60 via-brand-emerald/0 to-brand-emerald/0",
+    hoverBorder: "hover:border-brand-emerald/40",
+    stepPill: "bg-brand-emerald/15 text-brand-emerald border-brand-emerald/30",
+    progressFrom: "from-brand-emerald",
+    progressTo: "to-brand-green",
   },
 };

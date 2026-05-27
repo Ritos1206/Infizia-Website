@@ -28,6 +28,18 @@
   --color-brand-violet-soft: #c4b5fd;
   --color-brand-rose: #fb7185;
   --color-brand-rose-soft: #fda4af;
+  --color-brand-fuchsia: #e879f9;
+  --color-brand-fuchsia-soft: #f0abfc;
+  --color-brand-orange: #fb923c;
+  --color-brand-orange-soft: #fdba74;
+  --color-brand-lime: #a3e635;
+  --color-brand-lime-soft: #bef264;
+  --color-brand-cyan: #22d3ee;
+  --color-brand-cyan-soft: #67e8f9;
+  --color-brand-sky: #38bdf8;
+  --color-brand-sky-soft: #7dd3fc;
+  --color-brand-emerald: #34d399;
+  --color-brand-emerald-soft: #6ee7b7;
 
   --color-redhat: #ee0000;
 
@@ -57,6 +69,12 @@
   --shadow-glow-amber: 0 0 32px -8px rgba(251, 191, 36, 0.5);
   --shadow-glow-violet: 0 0 32px -8px rgba(167, 139, 250, 0.5);
   --shadow-glow-rose: 0 0 32px -8px rgba(251, 113, 133, 0.5);
+  --shadow-glow-fuchsia: 0 0 32px -8px rgba(232, 121, 249, 0.5);
+  --shadow-glow-orange: 0 0 32px -8px rgba(251, 146, 60, 0.5);
+  --shadow-glow-lime: 0 0 32px -8px rgba(163, 230, 53, 0.5);
+  --shadow-glow-cyan: 0 0 32px -8px rgba(34, 211, 238, 0.5);
+  --shadow-glow-sky: 0 0 32px -8px rgba(56, 189, 248, 0.5);
+  --shadow-glow-emerald: 0 0 32px -8px rgba(52, 211, 153, 0.5);
   --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
     0 8px 32px -12px rgba(0, 0, 0, 0.6);
 
@@ -243,6 +261,24 @@ body {
 }
 @utility glow-rose {
   box-shadow: var(--shadow-glow-rose);
+}
+@utility glow-fuchsia {
+  box-shadow: var(--shadow-glow-fuchsia);
+}
+@utility glow-orange {
+  box-shadow: var(--shadow-glow-orange);
+}
+@utility glow-lime {
+  box-shadow: var(--shadow-glow-lime);
+}
+@utility glow-cyan {
+  box-shadow: var(--shadow-glow-cyan);
+}
+@utility glow-sky {
+  box-shadow: var(--shadow-glow-sky);
+}
+@utility glow-emerald {
+  box-shadow: var(--shadow-glow-emerald);
 }
 
 @utility font-display {
