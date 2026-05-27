@@ -25,9 +25,13 @@ export function ProductGrid({
         <motion.div key={p.slug} variants={revealItem}>
           <Link
             href={`/products/${p.slug}`}
-            className="group relative block h-full overflow-hidden rounded-2xl border border-white/10 bg-bg-surface p-6 transition-all hover:border-brand-teal/40 hover:bg-bg-elevated"
+            className={`group relative block h-full overflow-hidden rounded-2xl border border-white/10 bg-bg-surface p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-bg-elevated hover:shadow-[0_18px_40px_-16px_rgba(0,0,0,0.6)] active:translate-y-0 active:scale-[0.995] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base ${
+              accent === "teal"
+                ? "hover:border-brand-teal/40 focus-visible:ring-brand-teal"
+                : "hover:border-brand-green/40 focus-visible:ring-brand-green"
+            }`}
           >
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -39,7 +43,7 @@ export function ProductGrid({
                 </h3>
               </div>
               <ArrowUpRight
-                className={`h-5 w-5 shrink-0 text-text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                className={`h-5 w-5 shrink-0 text-text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
                   accent === "teal"
                     ? "group-hover:text-brand-teal"
                     : "group-hover:text-brand-green"

@@ -73,8 +73,15 @@ export function RelatedProducts({
             <motion.div key={p.slug} variants={revealItem}>
               <Link
                 href={`/products/${p.slug}`}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-surface p-6 transition-all hover:border-white/20 hover:bg-bg-elevated"
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-surface p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/30 hover:bg-bg-elevated hover:shadow-[0_18px_40px_-16px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)_inset] active:translate-y-0 active:scale-[0.995] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base"
               >
+                {/* Top hairline shimmer — brightens on hover to reinforce
+                    that the whole card is the clickable surface. */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-white/0 via-white/15 to-white/0 opacity-60 transition-opacity duration-300 group-hover:opacity-100"
+                />
+
                 <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-text-faint">
                   {p.vertical}
                   {p.flagship && (
@@ -94,7 +101,7 @@ export function RelatedProducts({
 
                 <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary transition-colors group-hover:text-white">
                   Explore {p.shortName ?? p.name}
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </Link>
             </motion.div>

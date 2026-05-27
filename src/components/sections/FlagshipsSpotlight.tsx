@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -68,10 +67,9 @@ export function FlagshipsSpotlight() {
             const detail = flagshipDetails[p.slug];
             return (
               <Reveal key={p.slug} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 22 }}
-                  className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-surface p-8 md:p-10"
+                <Link
+                  href={`/products/${p.slug}`}
+                  className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-surface p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/30 hover:bg-bg-elevated hover:shadow-[0_18px_40px_-16px_rgba(0,0,0,0.6)] active:translate-y-0 active:scale-[0.995] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base md:p-10"
                 >
                   {/* Top gradient line */}
                   <div
@@ -80,7 +78,7 @@ export function FlagshipsSpotlight() {
 
                   {/* Glow blob */}
                   <div
-                    className={`pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full ${detail.accentBg} blur-3xl opacity-60 transition-opacity group-hover:opacity-100`}
+                    className={`pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full ${detail.accentBg} blur-3xl opacity-60 transition-opacity duration-300 group-hover:opacity-100`}
                   />
 
                   <div className="relative">
@@ -110,15 +108,16 @@ export function FlagshipsSpotlight() {
                       ))}
                     </ul>
 
-                    <Link
-                      href={`/products/${p.slug}`}
-                      className={`mt-9 inline-flex items-center gap-2 text-sm font-medium ${detail.accentText} hover:opacity-80 transition-opacity`}
+                    {/* Was a nested <Link> — now a <span> since the whole card
+                        is the link. Keeps the visual cue. */}
+                    <span
+                      className={`mt-9 inline-flex items-center gap-2 text-sm font-medium ${detail.accentText} transition-opacity group-hover:opacity-80`}
                     >
                       Explore {p.name}
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Link>
+                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
                   </div>
-                </motion.div>
+                </Link>
               </Reveal>
             );
           })}

@@ -298,13 +298,19 @@ function PanelKicker({
   label: string;
 }) {
   return (
-    <div className="flex items-baseline gap-2">
-      <p className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-text-faint">
+    <div className="flex items-center gap-2">
+      {/* Tiny teal accent dot — visual marker that elevates the label
+          from a quiet caption to a clear section heading. */}
+      <span
+        aria-hidden
+        className="h-1 w-1 shrink-0 rounded-full bg-brand-teal shadow-[0_0_6px_rgba(94,234,212,0.7)]"
+      />
+      <p className="font-mono text-[10px] font-semibold tracking-[0.22em] uppercase text-text-secondary">
         {label}
       </p>
       {count !== undefined && (
-        <span className="font-mono text-[10px] text-text-faint/70">
-          ({count})
+        <span className="rounded border border-white/10 bg-white/[0.04] px-1.5 py-0.5 font-mono text-[9px] tabular-nums text-text-muted">
+          {count}
         </span>
       )}
     </div>
@@ -413,9 +419,10 @@ function ProductsPanel() {
             <PanelKicker count={PRODUCTS.length} label="By Industry" />
             <Link
               href="/solutions"
-              className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted hover:text-white transition-colors"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-brand-teal/25 bg-brand-teal/[0.06] px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-brand-teal transition-all hover:border-brand-teal/50 hover:bg-brand-teal/[0.12] hover:text-brand-teal-soft"
             >
-              View Solutions →
+              View Solutions
+              <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
 
