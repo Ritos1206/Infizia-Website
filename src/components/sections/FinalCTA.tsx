@@ -1,8 +1,24 @@
+import { Download } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { GridBackground } from "@/components/motion/GridBackground";
 
+/**
+ * Homepage final CTA section.
+ *
+ * Two CTAs:
+ *   • Primary  — Book a Demo (canonical contact path for sales)
+ *   • Outline  — View Corporate Brochure (opens the corporate deck
+ *                PDF in a new tab — replaces an earlier "Talk to Sales"
+ *                button per user direction; the demo CTA already
+ *                covers the sales-contact path)
+ *
+ * Corporate brochure: `/brochures/infizia_corporate_deck.pdf`
+ * (metadata cleaned per D-43 pattern — Title set to
+ * "Infizia — Corporate Brochure" so the file opens with a clean
+ * label in browser tabs).
+ */
 export function FinalCTA() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
@@ -32,8 +48,14 @@ export function FinalCTA() {
               <ButtonLink href="/contact/demo" variant="primary" size="lg">
                 Book a Demo
               </ButtonLink>
-              <ButtonLink href="/contact/sales" variant="outline" size="lg">
-                Talk to Sales
+              <ButtonLink
+                href="/brochures/infizia_corporate_deck.pdf"
+                variant="outline"
+                size="lg"
+                external
+              >
+                <Download className="h-4 w-4" />
+                View Corporate Brochure
               </ButtonLink>
             </div>
           </Reveal>
