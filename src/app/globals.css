@@ -40,6 +40,8 @@
   --color-brand-sky-soft: #7dd3fc;
   --color-brand-emerald: #34d399;
   --color-brand-emerald-soft: #6ee7b7;
+  --color-brand-purple: #c084fc;
+  --color-brand-purple-soft: #d8b4fe;
 
   --color-redhat: #ee0000;
 
@@ -75,6 +77,7 @@
   --shadow-glow-cyan: 0 0 32px -8px rgba(34, 211, 238, 0.5);
   --shadow-glow-sky: 0 0 32px -8px rgba(56, 189, 248, 0.5);
   --shadow-glow-emerald: 0 0 32px -8px rgba(52, 211, 153, 0.5);
+  --shadow-glow-purple: 0 0 32px -8px rgba(192, 132, 252, 0.5);
   --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
     0 8px 32px -12px rgba(0, 0, 0, 0.6);
 
@@ -279,6 +282,9 @@ body {
 }
 @utility glow-emerald {
   box-shadow: var(--shadow-glow-emerald);
+}
+@utility glow-purple {
+  box-shadow: var(--shadow-glow-purple);
 }
 
 @utility font-display {

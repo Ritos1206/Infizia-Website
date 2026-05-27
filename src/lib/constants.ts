@@ -160,10 +160,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "enews",
-    name: "E-News Portal",
+    name: "E-News",
     vertical: "Media & Publishing",
+    bespokePage: true,
     blurb:
-      "Digital publishing platform purpose-built for blogs, news portals, and e-newspaper management.",
+      "Digital publishing platform for blogs, news portals, and e-newspapers — newsroom workspace, editorial workflows, cross-channel publishing, audience engagement, and subscriber monetisation on one platform.",
   },
 ];
 

@@ -21,7 +21,8 @@ export type ProductAccent =
   | "lime"
   | "cyan"
   | "sky"
-  | "emerald";
+  | "emerald"
+  | "purple";
 
 export type AccentTheme = {
   /** Solid text color (e.g., headings, link arrows) */
@@ -216,5 +217,18 @@ export const ACCENTS: Record<ProductAccent, AccentTheme> = {
     stepPill: "bg-brand-emerald/15 text-brand-emerald border-brand-emerald/30",
     progressFrom: "from-brand-emerald",
     progressTo: "to-brand-green",
+  },
+  purple: {
+    text: "text-brand-purple",
+    bg: "bg-brand-purple",
+    bgSoft: "bg-brand-purple/10",
+    border: "border-brand-purple/30",
+    glow: "bg-brand-purple/[0.10]",
+    shadow: "shadow-glow-purple",
+    topLine: "from-brand-purple/60 via-brand-purple/0 to-brand-purple/0",
+    hoverBorder: "hover:border-brand-purple/40",
+    stepPill: "bg-brand-purple/15 text-brand-purple border-brand-purple/30",
+    progressFrom: "from-brand-purple",
+    progressTo: "to-brand-fuchsia",
   },
 };
