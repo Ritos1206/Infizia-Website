@@ -4,13 +4,15 @@
  * Update PROJECT_STATUS.md in parallel when changing this file.
  */
 
+import type { ProductAccent } from "@/lib/product-accents";
+
 export const SITE = {
   name: "Infizia",
   tagline: "Infinite Intelligence",
   parent: "Contezza Technosolutions Pvt. Ltd.",
-  domain: "infizia.com",
-  url: "https://infizia.com",
-  email: "sales@infizia.com",
+  domain: "infizia.in",
+  url: "https://infizia.in",
+  email: "sales@infizia.in",
   description:
     "Infizia builds agentic AI products and the platforms they run on — autonomous systems that perceive, reason, and act across the enterprise. We also deliver trusted Red Hat stack implementations across RHEL, OpenShift, Ansible, and OpenShift AI.",
   short:
@@ -178,73 +180,121 @@ export const NON_FLAGSHIP_PRODUCTS = PRODUCTS.filter((p) => !p.flagship);
 export type Solution = {
   slug: string;
   name: string;
+  /** Long-form vertical name (e.g., "Industrial Intelligence & IoT") */
+  verticalLabel?: string;
   emoji: string;
   blurb: string;
+  /** Brand accent — pulls from the same palette as products. Phase 5. */
+  accent?: ProductAccent;
+  /**
+   * `true` when the solution has a dedicated, hand-built page under
+   * `/solutions/<slug>/page.tsx`. The dynamic `[slug]` route excludes
+   * these so Next.js doesn't double-prerender. All 10 verticals have
+   * bespoke pages as of Phase 5.
+   */
+  bespokePage?: boolean;
 };
 
 export const SOLUTIONS: Solution[] = [
   {
+    slug: "sales",
+    name: "Sales",
+    verticalLabel: "Sales",
+    emoji: "📈",
+    accent: "teal",
+    bespokePage: true,
+    blurb:
+      "One Lead record · pre-call intelligence · every conversation captured · same-day follow-up. The full sales motion on one mobile-first stack.",
+  },
+  {
     slug: "healthcare",
     name: "Healthcare",
+    verticalLabel: "Healthcare",
     emoji: "🏥",
+    accent: "green",
+    bespokePage: true,
     blurb:
-      "Clinic operations, patient experience, AI receptionists, and digital prescriptions.",
+      "Patient-first clinics and hospitals — appointments, telehealth, prescriptions, AI receptionists, and digital records on one platform.",
   },
   {
     slug: "hr-workforce",
     name: "HR & Workforce",
+    verticalLabel: "HR & Workforce",
     emoji: "🧑‍💼",
+    accent: "indigo",
+    bespokePage: true,
     blurb:
-      "Hiring, onboarding, performance, and meeting intelligence — unified.",
+      "Hire, onboard, perform, and meet — the full employee lifecycle on one connected stack of AI-driven HR products.",
   },
   {
     slug: "customer-support",
     name: "Customer Support",
+    verticalLabel: "Customer Support",
     emoji: "📞",
+    accent: "rose",
+    bespokePage: true,
     blurb:
-      "AI call centers and conversation automation for high-volume support.",
+      "Voice, chat, and knowledge-base AI that handles the high-volume questions — and escalates the rest cleanly to your team.",
   },
   {
     slug: "education",
     name: "Education",
+    verticalLabel: "Education",
     emoji: "🎓",
+    accent: "fuchsia",
+    bespokePage: true,
     blurb:
-      "AI course generation, structured assessments, and enterprise LMS.",
+      "From a single topic to a full learning experience — AI course generation, structured assessments, and an enterprise LMS.",
   },
   {
     slug: "ecommerce",
     name: "E-Commerce",
+    verticalLabel: "E-Commerce",
     emoji: "🛒",
+    accent: "lime",
+    bespokePage: true,
     blurb:
-      "Multi-vendor storefronts with WhatsApp commerce and AI engagement.",
+      "D2C brands and marketplaces — branded storefronts, multi-vendor catalogues, AI personalisation, and WhatsApp commerce.",
   },
   {
     slug: "finance-operations",
     name: "Finance & Operations",
+    verticalLabel: "Finance & Operations",
     emoji: "💼",
+    accent: "sky",
+    bespokePage: true,
     blurb:
-      "Document AI, invoice processing, and back-office automation.",
+      "Document AI, invoice processing, GST-compliant POS, and back-office automation — paperwork to ledger, without the typing.",
   },
   {
     slug: "intelligence-research",
     name: "Intelligence & Research",
+    verticalLabel: "Intelligence & Research",
     emoji: "🧠",
+    accent: "cyan",
+    bespokePage: true,
     blurb:
-      "Company intelligence, market research, and competitive analysis at speed.",
+      "Company intelligence, prospect research, and decision-grade briefs — built from your data, your CRM, and the open web.",
   },
   {
     slug: "industrial-iot",
     name: "Industrial Intelligence & IoT",
+    verticalLabel: "Industrial Intelligence & IoT",
     emoji: "🏭",
+    accent: "emerald",
+    bespokePage: true,
     blurb:
-      "Sensor-driven anomaly detection and smart decision support for industrial ops.",
+      "Sensor-driven anomaly detection, predictive maintenance, and contextual decision support for mines, plants, and utilities.",
   },
   {
     slug: "media-publishing",
     name: "Media & Publishing",
+    verticalLabel: "Media & Publishing",
     emoji: "📰",
+    accent: "purple",
+    bespokePage: true,
     blurb:
-      "Editorial workflows, scheduling, and audience engagement for digital media.",
+      "Newsroom workspace, editorial workflows, cross-channel publishing, and subscriber monetisation on one platform.",
   },
 ];
 
@@ -256,43 +306,79 @@ export type Service = {
   slug: string;
   name: string;
   blurb: string;
+  /** Brand accent for service-page styling. Phase 6. */
+  accent?: ProductAccent;
+  /**
+   * `true` when the service has a dedicated, hand-built page under
+   * `/services/<slug>/page.tsx`. The dynamic `[slug]` route excludes
+   * these so Next.js doesn't double-prerender.
+   */
+  bespokePage?: boolean;
+  /**
+   * If set, the service's index/menu cards link to this path instead of
+   * `/services/<slug>` and no service page is generated. Used for the
+   * Red Hat Stack card on the services catalog — it appears alongside
+   * the other service lines (per the corporate deck) but routes the
+   * user to the dedicated `/red-hat` micro-section. D-69.
+   */
+  redirectsTo?: string;
 };
 
+/**
+ * Service catalog — mirrors the corporate deck (page 4) exactly. Five
+ * cards, in the same order: Web & App Development, Agentic AI,
+ * Blockchain, Red Hat Stack, Google Cloud & Infrastructure.
+ *
+ * The Red Hat Stack card has `redirectsTo: "/red-hat"` — it appears in
+ * the services catalog (so the deck's 5-pillar story stays intact) but
+ * links to the dedicated micro-section instead of carrying its own
+ * service page. Per D-04, brand-redhat color stays only inside
+ * `/red-hat/*` content.
+ */
 export const SERVICES: Service[] = [
   {
     slug: "web-app-development",
-    name: "Web & Application Development",
+    name: "Enterprise Web & App Development",
+    accent: "blue",
+    bespokePage: true,
     blurb:
-      "Enterprise-grade web and mobile platforms engineered for scale and reliability.",
+      "Custom software solutions to optimize workflows, increase productivity, and enhance business efficiency. Web and mobile platforms engineered for enterprise scale and reliability.",
   },
   {
     slug: "ai-agentic-systems",
-    name: "AI Products & Agentic Systems",
+    name: "Enterprise Agentic AI Solutions",
+    accent: "violet",
+    bespokePage: true,
     blurb:
-      "Production-ready agentic architectures, RAG pipelines, and AI products tailored to your data.",
-  },
-  {
-    slug: "erp-automation",
-    name: "ERP & Automation",
-    blurb:
-      "Enterprise systems and workflow automation that wire your operations end to end.",
+      "Infizia builds agentic AI products and the platforms they run on — autonomous systems that perceive, reason, and act across your enterprise.",
   },
   {
     slug: "blockchain",
-    name: "Blockchain & ICO Listing",
+    name: "Blockchain Development & ICO Listing",
+    accent: "amber",
+    bespokePage: true,
     blurb:
-      "Token engineering, smart contracts, and listing-ready blockchain infrastructure.",
+      "Powerful blockchain development solutions with secure, decentralized technologies along with ICO listing — smart contracts, dApps, and token engineering for trustworthy ecosystems.",
   },
   {
-    slug: "multi-cloud",
-    name: "Multi-Cloud & Infrastructure",
+    slug: "redhat-stack",
+    name: "Red Hat Stack",
+    redirectsTo: "/red-hat",
     blurb:
-      "Hybrid- and multi-cloud architecture across AWS, Azure, GCP, and private cloud.",
+      "Enterprise-grade Red Hat stack: RHEL, OpenShift, Ansible, OpenShift AI, and JBoss — delivering scalable, secure, cloud-native infrastructure for mission-critical workloads. Assessment, implementation, managed services, and training across the full stack.",
+  },
+  {
+    slug: "google-cloud",
+    name: "Google Cloud & Infrastructure",
+    accent: "sky",
+    bespokePage: true,
+    blurb:
+      "Comprehensive cloud management ensuring performance, scalability, and cost efficiency across Google Cloud (GCP) — from architecture to migration to ongoing optimisation.",
   },
 ];
 
 /* ============================================================================
-   Red Hat (separate top-level entity — Premier Partner)
+   Red Hat (separate top-level entity)
    ============================================================================ */
 
 export type RedHatService = {

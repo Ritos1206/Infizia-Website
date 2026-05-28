@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -488,7 +489,7 @@ function SolutionsPanel() {
         <div className="col-span-4">
           <PanelKicker label="Industry Solutions" />
           <h3 className="mt-3 font-display text-2xl font-semibold leading-tight text-white">
-            Mapped to <span className="text-gradient-brand">9 verticals.</span>
+            Mapped to <span className="text-gradient-brand">10 verticals.</span>
           </h3>
           <p className="mt-3 text-sm leading-relaxed text-text-muted">
             Every Infizia solution combines the right products, services, and
@@ -496,8 +497,8 @@ function SolutionsPanel() {
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-3">
-            <Stat label="Verticals" value="9" />
-            <Stat label="Products" value="12" />
+            <Stat label="Verticals" value="10" />
+            <Stat label="Products" value="14" />
           </div>
         </div>
 
@@ -544,9 +545,9 @@ function SolutionsPanel() {
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   "web-app-development": Boxes,
   "ai-agentic-systems": BrainCircuit,
-  "erp-automation": Wrench,
   blockchain: Zap,
-  "multi-cloud": Server,
+  "redhat-stack": Server,
+  "google-cloud": Server,
 };
 
 function ServicesPanel() {
@@ -561,8 +562,8 @@ function ServicesPanel() {
             <span className="text-gradient-brand">code to cloud.</span>
           </h3>
           <p className="mt-3 text-sm leading-relaxed text-text-muted">
-            Five service lines covering enterprise web & mobile, agentic AI,
-            ERP automation, blockchain, and multi-cloud infrastructure.
+            Five practices covering enterprise web & mobile, agentic AI,
+            blockchain, the full Red Hat stack, and Google Cloud.
           </p>
 
           <div className="mt-6">
@@ -582,24 +583,52 @@ function ServicesPanel() {
           <div className="mt-4 grid grid-cols-1 gap-2.5">
             {SERVICES.map((s) => {
               const Icon = SERVICE_ICONS[s.slug] ?? Boxes;
+              const isRedirect = !!s.redirectsTo;
+              const href = s.redirectsTo ?? `/services/${s.slug}`;
               return (
                 <Link
                   key={s.slug}
-                  href={`/services/${s.slug}`}
-                  className="group flex items-start gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3.5 transition-all hover:border-brand-green/40 hover:bg-white/[0.04]"
+                  href={href}
+                  className={cn(
+                    "group flex items-start gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3.5 transition-all hover:bg-white/[0.04]",
+                    isRedirect
+                      ? "hover:border-redhat/30"
+                      : "hover:border-brand-green/40",
+                  )}
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-green/10 text-brand-green">
+                  <div
+                    className={cn(
+                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
+                      isRedirect
+                        ? "bg-redhat/10 text-redhat"
+                        : "bg-brand-green/10 text-brand-green",
+                    )}
+                  >
                     <Icon className="h-4 w-4" strokeWidth={1.8} />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-display text-sm font-semibold text-white group-hover:text-brand-green transition-colors">
+                    <p
+                      className={cn(
+                        "font-display text-sm font-semibold text-white transition-colors",
+                        isRedirect
+                          ? "group-hover:text-redhat"
+                          : "group-hover:text-brand-green",
+                      )}
+                    >
                       {s.name}
                     </p>
                     <p className="mt-0.5 line-clamp-1 text-xs text-text-muted">
                       {s.blurb}
                     </p>
                   </div>
-                  <ArrowUpRight className="h-4 w-4 shrink-0 self-center text-text-faint transition-all group-hover:text-brand-green group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight
+                    className={cn(
+                      "h-4 w-4 shrink-0 self-center text-text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
+                      isRedirect
+                        ? "group-hover:text-redhat"
+                        : "group-hover:text-brand-green",
+                    )}
+                  />
                 </Link>
               );
             })}
@@ -633,23 +662,35 @@ function RedHatPanel() {
   return (
     <>
       <div className="p-8">
-        {/* Header banner */}
-        <div className="mb-6 flex items-end justify-between gap-4 border-b border-white/5 pb-5">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-redhat/30 bg-redhat/10 px-2.5 py-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-redhat" />
-              <span className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-white">
-                Red Hat Stack Implementation
-              </span>
+        {/* Header banner — features the official Red Hat lockup */}
+        <div className="mb-6 flex items-center justify-between gap-4 border-b border-white/5 pb-5">
+          <div className="flex items-center gap-4">
+            {/* Red Hat lockup — SVG ships with its own dark-card background, so
+                it sits cleanly inside the dark mega-menu surface. */}
+            <Image
+              src="/redhat-logo.svg"
+              alt="Red Hat"
+              width={140}
+              height={70}
+              className="h-12 w-auto rounded-md"
+              priority
+            />
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-redhat/30 bg-redhat/10 px-2.5 py-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-redhat" />
+                <span className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-white">
+                  Stack implementation
+                </span>
+              </div>
+              <h3 className="mt-2 font-display text-xl font-semibold leading-tight text-white">
+                The full stack.{" "}
+                <span className="text-text-muted">Implemented end to end.</span>
+              </h3>
             </div>
-            <h3 className="mt-3 font-display text-2xl font-semibold leading-tight text-white">
-              The full stack.{" "}
-              <span className="text-text-muted">Implemented end to end.</span>
-            </h3>
           </div>
           <Link
             href="/red-hat"
-            className="hidden md:inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-teal hover:text-brand-teal-soft transition-colors"
+            className="hidden md:inline-flex shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-teal hover:text-brand-teal-soft transition-colors"
           >
             Practice overview
             <ArrowUpRight className="h-3 w-3" />

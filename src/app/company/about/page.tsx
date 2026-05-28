@@ -13,7 +13,7 @@ export default function AboutPage() {
     <PlaceholderHero
       kicker="About Infizia"
       title="Infinite intelligence, engineered."
-      lede="Infizia is a sub-brand of Contezza Technosolutions Pvt. Ltd. We design and ship AI-native software, agentic systems, and enterprise platforms — and we are a Premier Red Hat Partner. Full company story coming soon."
+      lede="Infizia is a sub-brand of Contezza Technosolutions Pvt. Ltd. We design and ship AI-native software, agentic systems, and enterprise platforms — and we deliver the full Red Hat stack at production scale. Full company story coming soon."
       primaryCTA={{ label: "About Contezza", href: "/company/contezza" }}
       secondaryCTA={{ label: "Vision & Mission", href: "/company/vision-mission" }}
     />

@@ -6,7 +6,11 @@ import { SOLUTIONS } from "@/lib/constants";
 type Params = { slug: string };
 
 export function generateStaticParams() {
-  return SOLUTIONS.map((s) => ({ slug: s.slug }));
+  // Solutions with bespoke pages have their own dedicated route handlers
+  // under /solutions/<slug>/. Skip them here so Next.js doesn't double-
+  // prerender. As of Phase 5, all 10 verticals have bespoke pages — this
+  // dynamic route stays as a fallback for any future addition.
+  return SOLUTIONS.filter((s) => !s.bespokePage).map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({

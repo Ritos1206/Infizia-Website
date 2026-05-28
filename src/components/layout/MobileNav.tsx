@@ -38,7 +38,9 @@ const SECTIONS = [
     label: "Services",
     items: SERVICES.map((s) => ({
       label: s.name,
-      href: `/services/${s.slug}`,
+      // Honour the redirectsTo field — the Red Hat Stack card in services
+      // links to /red-hat instead of a non-existent /services/redhat-stack.
+      href: s.redirectsTo ?? `/services/${s.slug}`,
     })),
   },
   {
