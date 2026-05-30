@@ -23,7 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources/blog",
     "/resources/case-studies",
     "/company/about",
-    "/company/contezza",
     "/company/vision-mission",
     "/company/careers",
     "/contact",

@@ -9,7 +9,7 @@ import type { ProductAccent } from "@/lib/product-accents";
 export const SITE = {
   name: "Infizia",
   tagline: "Infinite Intelligence",
-  parent: "Contezza Technosolutions Pvt. Ltd.",
+  parent: "Contezza Techno Solution Pvt. Ltd.",
   domain: "infizia.in",
   url: "https://infizia.in",
   email: "sales@infizia.in",
@@ -438,39 +438,64 @@ export const REDHAT_SERVICES: RedHatService[] = [
 export type TechArea = {
   slug: string;
   name: string;
+  /** Short label for hero kicker / mega menu */
+  shortLabel?: string;
   blurb: string;
+  /** Brand accent for the dedicated page */
+  accent?: ProductAccent;
+  /**
+   * When true, dedicated route at /technology/<slug>/page.tsx exists,
+   * so the dynamic [slug] route should exclude this entry from
+   * generateStaticParams. (Phase 7 — all 5 pillars are bespoke.)
+   */
+  bespokePage?: boolean;
 };
 
 export const TECHNOLOGY: TechArea[] = [
   {
     slug: "llm-genai",
     name: "LLM & Generative AI",
+    shortLabel: "LLM · GenAI",
     blurb:
-      "Foundation models, fine-tuning, prompt engineering, and inference at scale.",
+      "Foundation models, fine-tuning, prompt engineering, and inference at scale — the language layer behind every Infizia product.",
+    accent: "violet",
+    bespokePage: true,
   },
   {
     slug: "agentic-architecture",
     name: "Agentic Architecture",
+    shortLabel: "Agents",
     blurb:
-      "Multi-agent systems that observe, reason, and act with safety controls and audit trails.",
+      "Multi-agent systems that observe, reason, and act — with memory, safety controls, and audit trails wired in from day one.",
+    accent: "indigo",
+    bespokePage: true,
   },
   {
     slug: "rag",
     name: "RAG Systems",
+    shortLabel: "Retrieval",
     blurb:
-      "Retrieval-augmented generation grounded in your proprietary data, documents, and knowledge.",
+      "Retrieval-augmented generation grounded in your proprietary data, documents, and knowledge — answers cited, never hallucinated.",
+    accent: "cyan",
+    bespokePage: true,
   },
   {
     slug: "voice-ai",
     name: "Voice & Conversational AI",
+    shortLabel: "Voice",
     blurb:
-      "Real-time transcription, voice agents, and natural multi-turn dialogue.",
+      "Real-time transcription, voice agents, and natural multi-turn dialogue — code-mixed Hindi-English fluent, 18 languages live.",
+    accent: "rose",
+    bespokePage: true,
   },
   {
     slug: "application-architecture",
     name: "Application Architecture",
+    shortLabel: "App Arch",
     blurb:
-      "Cloud-native, event-driven, and resilient systems designed for enterprise scale.",
+      "Cloud-native, event-driven, observable systems designed for enterprise scale — the production substrate every AI workload runs on.",
+    accent: "sky",
+    bespokePage: true,
   },
 ];
 
@@ -480,7 +505,6 @@ export const TECHNOLOGY: TechArea[] = [
 
 export const COMPANY = [
   { slug: "about", name: "About Infizia", path: "/company/about" },
-  { slug: "contezza", name: "About Contezza", path: "/company/contezza" },
   { slug: "vision-mission", name: "Vision & Mission", path: "/company/vision-mission" },
   { slug: "careers", name: "Careers", path: "/company/careers" },
 ] as const;
@@ -518,7 +542,6 @@ export const FOOTER_LINKS = {
   })),
   Company: [
     { label: "About Infizia", href: "/company/about" },
-    { label: "About Contezza", href: "/company/contezza" },
     { label: "Vision & Mission", href: "/company/vision-mission" },
     { label: "Careers", href: "/company/careers" },
     { label: "Blog", href: "/resources/blog" },
