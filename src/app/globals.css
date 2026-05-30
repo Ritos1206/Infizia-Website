@@ -372,3 +372,14 @@ body {
   box-shadow: 0 0 12px var(--color-brand-teal);
   animation: pulse-soft 2s ease-in-out infinite;
 }
+
+
+/* ─── reCAPTCHA v3 — hide the default floating badge ───────────
+   Google requires either the badge OR an inline disclosure on the
+   page. We hide the badge and surface the disclosure under each
+   contact form's submit button via the <RecaptchaNotice /> component.
+   Per Google's reCAPTCHA Terms (FAQ: "I'd like to hide the reCAPTCHA
+   badge — what is allowed?"). */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
