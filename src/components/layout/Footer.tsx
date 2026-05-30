@@ -60,13 +60,13 @@ export function Footer() {
             © {new Date().getFullYear()} {SITE.parent}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-6 text-xs text-text-faint">
-            <Link href="/legal/privacy" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy
             </Link>
-            <Link href="/legal/terms" className="hover:text-white transition-colors">
+            <Link href="/terms" className="hover:text-white transition-colors">
               Terms
             </Link>
-            <Link href="/legal/security" className="hover:text-white transition-colors">
+            <Link href="/security" className="hover:text-white transition-colors">
               Security
             </Link>
             <a

@@ -7,6 +7,7 @@ import {
   TECHNOLOGY,
   SITE,
 } from "@/lib/constants";
+import { POSTS } from "@/content/blog/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -28,6 +29,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/contact/demo",
     "/contact/sales",
+    "/privacy",
+    "/security",
+    "/terms",
   ];
 
   return [
@@ -64,6 +68,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...TECHNOLOGY.map((t) => ({
       url: `${base}/technology/${t.slug}`,
       lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    ...POSTS.map((p) => ({
+      url: `${base}/resources/blog/${p.slug}`,
+      lastModified: new Date(p.date),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
