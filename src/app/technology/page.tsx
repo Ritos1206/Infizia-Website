@@ -1,160 +1,85 @@
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Reveal, RevealGroup } from "@/components/motion/Reveal";
-import { Kicker } from "@/components/ui/Kicker";
-import { GridBackground } from "@/components/motion/GridBackground";
-import { ArrowUpRight, Sparkles, Brain, Database, Mic, Layers, type LucideIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
+import { TechStackBlueprint } from "@/components/index-pages/TechStackBlueprint";
+import { TechPillarMatrix } from "@/components/index-pages/TechPillarMatrix";
 import { buildMetadata } from "@/lib/seo";
-import { TECHNOLOGY } from "@/lib/constants";
-import { ACCENTS } from "@/lib/product-accents";
-import { cn } from "@/lib/utils";
 
 export const metadata = buildMetadata({
   title: "Technology",
   description:
-    "The technology practice powering Infizia: LLM & generative AI, agentic architecture, RAG systems, voice & conversational AI, and modern application architecture.",
+    "The technology practice powering Infizia: voice surfaces, language models, agentic architecture, retrieval, and the cloud-native foundation that holds it all up — engineered as one cognitive stack.",
   path: "/technology",
 });
 
 /**
- * Technology index — Phase 7.
+ * /technology — full redesign per D-76.
  *
- * D-57 clickable-card standard. Each pillar card carries:
- *   • Whole card as <Link>
- *   • Per-pillar accent on icon block, top hairline shimmer, hover
- *     border, and explore-link text
- *   • Hover lift + accent glow + arrow translation
- *   • Active press + focus ring
+ * Replaces the prior uniform 3-col card grid with two distinct
+ * sections, each with its own visual idiom:
  *
- * Per-pillar icon (LLM=Sparkles, Agents=Brain, RAG=Database,
- * Voice=Mic, App Arch=Layers) gives the catalogue visual variety
- * — same role solutions' emojis play.
+ *   1. TechStackBlueprint — vertical 5-layer architectural stack
+ *                           (Voice → LLM → Agents → RAG → App Arch)
+ *                           with a traveling data dot flowing top-to-
+ *                           bottom on a 6-second loop and a foundation
+ *                           rail beneath
+ *   2. TechPillarMatrix    — 5-column pillar matrix showing which
+ *                            Infizia products run on top of each pillar,
+ *                            rendered as accent-coloured product chips.
+ *                            App Architecture column shows "All 14
+ *                            products" since it's the foundation.
+ *
+ * Plus a final CTA strip linking to architect contact + corporate brochure.
  */
-
-const PILLAR_ICONS: Record<string, LucideIcon> = {
-  "llm-genai": Sparkles,
-  "agentic-architecture": Brain,
-  rag: Database,
-  "voice-ai": Mic,
-  "application-architecture": Layers,
-};
-
 export default function TechnologyIndexPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden pt-20 pb-16 md:pt-28 md:pb-20">
-        <GridBackground />
+      <TechStackBlueprint />
+      <TechPillarMatrix />
 
-        <Container>
-          <div className="max-w-3xl">
-            <Reveal>
-              <Kicker>Technology Practice</Kicker>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
-                The architecture beneath{" "}
-                <span className="text-gradient-brand">the intelligence.</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
-                Five pillars define how we design, build, and operate
-                AI-native systems for the enterprise — from foundation models
-                and agent meshes to retrieval, voice, and the application
-                substrate that holds it all up.
-              </p>
-            </Reveal>
+      {/* Final CTA strip */}
+      <section className="relative border-t border-white/[0.06] py-20 md:py-24">
+        <div className="container-page">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-bg-elevated to-bg-surface p-8 md:p-12">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-violet/[0.12] blur-3xl" />
+              <div className="pointer-events-none absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-brand-cyan/[0.12] blur-3xl" />
 
-            <Reveal delay={0.15}>
-              <div className="mt-10 flex flex-wrap items-center gap-4 text-xs">
-                <span className="font-mono uppercase tracking-[0.2em] text-text-faint">
-                  5 Pillars · One Cognitive Stack
-                </span>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* Pillar cards grid */}
-      <Container className="pb-24 md:pb-32">
-        <RevealGroup
-          stagger={0.05}
-          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {TECHNOLOGY.map((t) => {
-            const accent = t.accent ?? "teal";
-            const a = ACCENTS[accent];
-            const Icon = PILLAR_ICONS[t.slug] ?? Sparkles;
-
-            return (
-              <Reveal key={t.slug}>
-                <Link
-                  href={`/technology/${t.slug}`}
-                  className={cn(
-                    "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-surface p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-bg-elevated hover:shadow-[0_18px_40px_-16px_rgba(0,0,0,0.6)] active:translate-y-0 active:scale-[0.995] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base md:p-7",
-                    a.hoverBorder,
-                  )}
-                >
-                  {/* Top hairline shimmer — accent-tinted */}
-                  <span
-                    aria-hidden
-                    className={cn(
-                      "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r opacity-50 transition-opacity duration-300 group-hover:opacity-100",
-                      a.topLine,
-                    )}
-                  />
-
-                  {/* Soft accent glow on hover */}
-                  <div
-                    className={cn(
-                      "pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full blur-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-60",
-                      a.glow,
-                    )}
-                  />
-
-                  <div className="relative flex items-start justify-between gap-3">
-                    <div
-                      className={cn(
-                        "flex h-12 w-12 items-center justify-center rounded-xl border",
-                        a.border,
-                        a.bgSoft,
-                        a.text,
-                      )}
-                    >
-                      <Icon className="h-5 w-5" strokeWidth={1.6} />
-                    </div>
-                    <ArrowUpRight className="h-5 w-5 text-text-faint transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-
-                  <p className="relative mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
-                    Pillar · {t.shortLabel ?? t.name}
+              <div className="relative grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-faint">
+                    Building something custom?
                   </p>
-
-                  <h3 className="relative mt-2 font-display text-2xl font-semibold tracking-tight text-white">
-                    {t.name}
-                  </h3>
-
-                  <p className="relative mt-3 flex-1 text-sm leading-relaxed text-text-muted">
-                    {t.blurb}
+                  <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white md:text-4xl">
+                    Talk to an architect.
+                  </h2>
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-text-muted">
+                    The same five pillars that power our products can power
+                    yours. Walk through the architecture with our team and
+                    we&rsquo;ll size the build with you.
                   </p>
-
-                  <span
-                    className={cn(
-                      "relative mt-6 inline-flex items-center gap-1.5 text-sm font-medium transition-colors",
-                      a.text,
-                    )}
+                </div>
+                <div className="flex flex-wrap items-center justify-end gap-3">
+                  <Link
+                    href="/contact/sales"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand-teal px-7 text-sm font-medium text-bg-base shadow-glow-teal transition-all hover:bg-brand-teal-soft hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base"
                   >
-                    Explore {t.shortLabel ?? t.name}
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </Link>
-              </Reveal>
-            );
-          })}
-        </RevealGroup>
-      </Container>
+                    Talk to an architect
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/red-hat"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 px-7 text-sm font-medium text-white transition-all hover:border-white/30 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base"
+                  >
+                    Visit Red Hat practice
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }

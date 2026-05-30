@@ -2,6 +2,7 @@ import { HomeHero } from "@/components/sections/HomeHero";
 import { PartnersMarquee } from "@/components/sections/PartnersMarquee";
 import { AIImpact } from "@/components/sections/AIImpact";
 import { FlagshipsSpotlight } from "@/components/sections/FlagshipsSpotlight";
+import { SuccessStories } from "@/components/sections/SuccessStories";
 import { ImplementationProcess } from "@/components/sections/ImplementationProcess";
 import { RedHatSection } from "@/components/sections/RedHatSection";
 import { WhyInfizia } from "@/components/sections/WhyInfizia";
@@ -14,6 +15,7 @@ export default function HomePage() {
       <PartnersMarquee />
       <AIImpact />
       <FlagshipsSpotlight />
+      <SuccessStories />
       <ImplementationProcess />
       <RedHatSection />
       <WhyInfizia />
