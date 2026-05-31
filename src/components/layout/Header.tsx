@@ -30,10 +30,10 @@ export function Header() {
       )}
     >
       <div className="container-page">
-        <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
+        <div className="flex h-16 items-center justify-between gap-2 sm:gap-4 xl:h-20">
           <Link
             href="/"
-            className="header-logo-shift inline-flex items-center"
+            className="header-logo-shift inline-flex min-w-0 items-center"
             aria-label="Infizia home"
           >
             <InfiziaLogo priority />
@@ -41,7 +41,7 @@ export function Header() {
 
           <MegaMenu />
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <ButtonLink
               href="/contact/demo"
               variant="primary"

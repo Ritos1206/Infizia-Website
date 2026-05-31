@@ -60,7 +60,7 @@ export function InfiziaLogo({
   // the same height ratio so they always sit on a balanced optical baseline
   // — no synthetic SVG approximation, no padding mismatch.
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
+    <span className={cn("inline-flex items-center gap-2 sm:gap-2.5", className)}>
       <Image
         src="/brand/infizia-mark-light.png"
         alt=""
@@ -68,7 +68,7 @@ export function InfiziaLogo({
         width={112}
         height={74}
         priority={priority}
-        className="h-9 w-auto shrink-0 select-none lg:h-10"
+        className="h-8 w-auto shrink-0 select-none sm:h-9 xl:h-10"
       />
       <Image
         src="/brand/infizia-wordmark-light.png"
@@ -77,7 +77,7 @@ export function InfiziaLogo({
         width={340}
         height={62}
         priority={priority}
-        className="relative -top-[3px] h-6 w-auto select-none lg:h-7"
+        className="relative -top-[3px] h-5 w-auto select-none sm:h-6 xl:h-7"
       />
       <span className="sr-only">Infizia — Infinite Intelligence</span>
     </span>

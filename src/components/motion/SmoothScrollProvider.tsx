@@ -4,6 +4,15 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
+// Expose the Lenis instance globally so other components (e.g. MobileNav)
+// can stop/start it when they open a fullscreen overlay that needs to
+// own scroll behaviour. Typed via a typescript module augmentation.
+declare global {
+  interface Window {
+    __lenis?: Lenis | null;
+  }
+}
+
 /**
  * Smooth-scroll provider using Lenis.
  *
@@ -19,6 +28,10 @@ import Lenis from "lenis";
  *   that page leaves you wherever you scrolled to. We intercept those
  *   clicks and trigger the same scroll reset, so the behaviour matches
  *   what users expect from clicking a navigation link.
+ * - Exposes the Lenis instance via `window.__lenis` so the MobileNav
+ *   drawer can call `lenis.stop()` while open (otherwise Lenis would
+ *   keep capturing wheel/touch events on the page underneath the
+ *   drawer and the drawer's own scroll would be hijacked).
  */
 export function SmoothScrollProvider({
   children,
@@ -46,6 +59,7 @@ export function SmoothScrollProvider({
     });
 
     lenisRef.current = lenis;
+    window.__lenis = lenis;
 
     let rafId = 0;
     function raf(time: number) {
@@ -58,6 +72,7 @@ export function SmoothScrollProvider({
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
+      if (window.__lenis === lenis) window.__lenis = null;
     };
   }, []);
 

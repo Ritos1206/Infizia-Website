@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   PRODUCTS,
@@ -100,12 +100,65 @@ export function MobileNav() {
     }
   }
 
+  // Body scroll-lock + Lenis stop while the drawer is open.
+  //
+  // Without this, two things go wrong on mobile:
+  //   1. The page underneath continues to scroll when the user swipes
+  //      anywhere on the drawer (because Lenis listens at the document
+  //      level and hijacks the wheel/touch event).
+  //   2. The drawer's own `overflow-y-auto` never wins because Lenis
+  //      preventDefault's the event before the browser routes it to
+  //      the drawer's scroll container.
+  //
+  // Fix:
+  //   - Stop Lenis (`window.__lenis?.stop()`) so it releases its
+  //     wheel/touch listeners.
+  //   - Lock <html> + <body> overflow to `hidden` so native scroll on
+  //     the page underneath is paused. We preserve the current scroll
+  //     position via a fixed-positioning + top-offset trick so closing
+  //     the drawer returns the user to where they were.
+  //   - The drawer panel and backdrop carry `data-lenis-prevent` for
+  //     redundancy in case Lenis is re-started by another effect.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (open) {
+      const scrollY = window.scrollY;
+      // Stop Lenis. It will be restarted in the cleanup branch.
+      window.__lenis?.stop();
+      // Pin the body in place so iOS Safari doesn't bounce-scroll.
+      body.style.position = "fixed";
+      body.style.top = `-${scrollY}px`;
+      body.style.left = "0";
+      body.style.right = "0";
+      body.style.width = "100%";
+      html.style.overflow = "hidden";
+      body.dataset.scrollY = String(scrollY);
+      return () => {
+        const restoreY = Number(body.dataset.scrollY || 0);
+        body.style.position = "";
+        body.style.top = "";
+        body.style.left = "";
+        body.style.right = "";
+        body.style.width = "";
+        html.style.overflow = "";
+        delete body.dataset.scrollY;
+        window.scrollTo(0, restoreY);
+        window.__lenis?.start();
+      };
+    }
+    return undefined;
+  }, [open]);
+
   return (
     <>
       <button
         onClick={handleOpen}
         aria-label="Open menu"
-        className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/5 transition-colors"
+        className="xl:hidden inline-flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/5 transition-colors"
       >
         <Menu className="h-5 w-5" />
       </button>
@@ -119,14 +172,16 @@ export function MobileNav() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              className="lg:hidden fixed inset-0 z-50 bg-bg-base/80 backdrop-blur-sm"
+              data-lenis-prevent
+              className="xl:hidden fixed inset-0 z-50 bg-bg-base/80 backdrop-blur-sm"
             />
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:hidden fixed right-0 top-0 z-50 h-full w-full max-w-sm overflow-y-auto bg-bg-surface border-l border-white/10"
+              data-lenis-prevent
+              className="xl:hidden fixed right-0 top-0 z-50 h-[100dvh] w-full max-w-sm overflow-y-auto overscroll-contain bg-bg-surface border-l border-white/10"
             >
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 sticky top-0 bg-bg-surface z-10">
                 <span className="font-display text-sm font-semibold text-white">

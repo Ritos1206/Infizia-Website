@@ -145,12 +145,20 @@ html {
 
 html, body {
   min-height: 100%;
+  /* `overflow-x: clip` (vs. `hidden`) doesn't establish a scrolling context,
+     which keeps `position: sticky` working on the Header and avoids any
+     conflict with Lenis's virtualised scroll. We need it on BOTH html and
+     body — body alone is not enough because <html>'s scrollWidth can
+     still grow past clientWidth when an absolutely-positioned descendant
+     extends beyond the viewport (the decorative -top-1/3 left-1/2 glow
+     blobs in ProductHero/SolutionHero/etc. were doing exactly this on
+     phones < 768px). */
+  overflow-x: clip;
 }
 
 body {
   background: var(--color-bg-base);
   color: var(--color-text-secondary);
-  overflow-x: hidden;
 }
 
 ::selection {
@@ -195,8 +203,11 @@ body {
   width: 100%;
   max-width: 1280px;
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
 
+  @media (min-width: 380px) {
+    padding-inline: 1.5rem;
+  }
   @media (min-width: 768px) {
     padding-inline: 2rem;
   }
@@ -349,9 +360,17 @@ body {
 /* Header logo — pulled left toward the screen edge.
    `container-page` adds horizontal padding (24px / 32px / 48px); we offset
    most of it on the logo only, leaving ~8px breathing room so the mark
-   never clips off-screen on any viewport. */
+   never clips off-screen on any viewport.
+
+   At ≤360px (Galaxy Fold / older Android) we soften the pull-left so the
+   logo never collides with a narrow viewport's right edge or the hamburger. */
 .header-logo-shift {
-  margin-left: -1rem;        /* mobile: 24px padding − 16px = 8px from edge */
+  margin-left: -0.5rem;      /* default tiny screens (≤360px-ish): only -8px */
+}
+@media (min-width: 380px) {
+  .header-logo-shift {
+    margin-left: -1rem;      /* mobile: 24px padding − 16px = 8px from edge */
+  }
 }
 @media (min-width: 768px) {
   .header-logo-shift {

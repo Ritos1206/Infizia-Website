@@ -106,7 +106,12 @@ export function MegaMenu() {
 
   return (
     <nav
-      className="hidden lg:flex items-center gap-1"
+      // Desktop mega-menu only renders at xl (1280px) and up. Below that
+      // (Nest Hub 1024×600, iPad Pro landscape, Galaxy Z Fold 5 unfolded,
+      // Surface Pro 7) the MobileNav hamburger drawer takes over — the
+      // 5 mega-menu triggers + 2 flat links + Book a Demo + wide logo
+      // overflow the ~960px content width at 1024-1279px otherwise.
+      className="hidden xl:flex items-center gap-1"
       onMouseLeave={scheduleClose}
     >
       <MenuTrigger
