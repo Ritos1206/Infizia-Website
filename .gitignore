@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# But DO ship the template so people who clone the repo know which
+# variables they need to set (real values still ignored above).
+!.env.example
 
 # vercel
 .vercel
