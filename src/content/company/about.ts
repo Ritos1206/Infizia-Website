@@ -93,7 +93,7 @@ export const MILESTONES: Milestone[] = [
   {
     year: "2012",
     title: "Contezza Techno Solution founded",
-    body: "Incorporated on 02 Dec 2012 under the Companies Act of India as Contezza Techno Solution Pvt. Ltd. — building enterprise software, web, and mobile platforms for Indian and global clients.",
+    body: "Incorporated on 02 Jul 2012 under the Companies Act of India as Contezza Techno Solution Pvt. Ltd. — building enterprise software, web, and mobile platforms for Indian and global clients.",
   },
   {
     year: "2017",
@@ -116,7 +116,7 @@ export const MILESTONES: Milestone[] = [
 export const CONTEZZA_PARENTAGE = {
   title: "A unit of Contezza Techno Solution Pvt. Ltd.",
   paragraph:
-    "Infizia launched in 2026 as the AI-native sub-brand of Contezza Techno Solution Pvt. Ltd. — a private company incorporated on 02 Dec 2012 under the Companies Act of India, registered at the Registrar of Companies. Contezza has spent over a decade building enterprise software, web platforms, and cloud infrastructure for Indian and international clients. Infizia carries that engineering rigor forward into agentic AI and autonomous systems, while the parent group continues to deliver the broader services portfolio.",
+    "Infizia launched in 2026 as the AI-native sub-brand of Contezza Techno Solution Pvt. Ltd. — a private company incorporated on 02 Jul 2012 under the Companies Act of India, registered at the Registrar of Companies. Contezza has spent over a decade building enterprise software, web platforms, and cloud infrastructure for Indian and international clients. Infizia carries that engineering rigor forward into agentic AI and autonomous systems, while the parent group continues to deliver the broader services portfolio.",
   legalName: "CONTEZZA TECHNO SOLUTION PRIVATE LIMITED",
   cin: "U74999WB2012PTC183340",
   facts: [
@@ -128,7 +128,7 @@ export const CONTEZZA_PARENTAGE = {
     {
       icon: Compass,
       label: "Incorporated",
-      value: "02 Dec 2012 · Companies Act of India",
+      value: "02 Jul 2012 · Companies Act of India",
     },
     {
       icon: Layers,

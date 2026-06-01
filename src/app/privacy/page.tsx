@@ -20,7 +20,7 @@ const SECTIONS: LegalSection[] = [
             Contezza Techno Solution Pvt. Ltd.
           </strong>{" "}
           (CIN <code className="rounded bg-white/[0.04] px-1.5 py-0.5 font-mono text-xs text-text-secondary">U74999WB2012PTC183340</code>),
-          a private company incorporated on 02 December 2012 under the
+          a private company incorporated on 02 July 2012 under the
           Companies Act of India and registered with the Registrar of
           Companies. References to &ldquo;we&rdquo;, &ldquo;us&rdquo;, or
           &ldquo;Infizia&rdquo; in this policy mean Contezza Techno
