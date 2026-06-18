@@ -324,7 +324,7 @@ const SECTIONS: LegalSection[] = [
         <ul className="mt-4 space-y-2">
           <li>
             <strong className="text-white">India</strong> — Zoho mailbox
-            (sales@infizia.in) and any India-based hosting region.
+            ({SITE.email}) and any India-based hosting region.
           </li>
           <li>
             <strong className="text-white">United States and other
@@ -389,7 +389,7 @@ export default function PrivacyPage() {
     <LegalPage
       kicker="Legal · Privacy"
       title="Your data, handled with care."
-      intro="This policy explains what personal data we collect on infizia.in, how we use it, who we share it with, and the rights you have. We try to keep it short, plain-English, and honest."
+      intro={`This policy explains what personal data we collect on ${SITE.domain}, how we use it, who we share it with, and the rights you have. We try to keep it short, plain-English, and honest.`}
       lastUpdated="2026-05-30"
       accent="teal"
       sections={SECTIONS}

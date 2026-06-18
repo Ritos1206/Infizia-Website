@@ -312,7 +312,7 @@ export default function TermsPage() {
     <LegalPage
       kicker="Legal · Terms"
       title="Terms of use, in plain English."
-      intro="The rules that govern your use of infizia.in. We've kept it readable — no fine print games. By using the site you agree to these terms."
+      intro={`The rules that govern your use of ${SITE.domain}. We've kept it readable — no fine print games. By using the site you agree to these terms.`}
       lastUpdated="2026-05-30"
       accent="blue"
       sections={SECTIONS}

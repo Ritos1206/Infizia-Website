@@ -24,6 +24,7 @@ import { Kicker } from "@/components/ui/Kicker";
 import { GridBackground } from "@/components/motion/GridBackground";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { SITE } from "@/lib/constants";
 
 const ALTERNATIVES = [
   {
@@ -44,8 +45,8 @@ const ALTERNATIVES = [
     icon: Mail,
     title: "Email us",
     body: "Prefer plain email? Drop us a line — we read everything.",
-    href: "mailto:sales@infizia.in",
-    cta: "sales@infizia.in",
+    href: `mailto:${SITE.email}`,
+    cta: SITE.email,
     external: true,
   },
 ] as const;

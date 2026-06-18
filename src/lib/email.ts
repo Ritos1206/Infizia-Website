@@ -10,11 +10,11 @@
  *   SMTP_HOST          smtp.zoho.in (or smtp.zoho.com depending on the Zoho region)
  *   SMTP_PORT          465 (SSL) or 587 (STARTTLS)
  *   SMTP_SECURE        true for 465, false for 587
- *   SMTP_USER          sales@infizia.in (the Zoho mailbox sending the mail)
+ *   SMTP_USER          The Zoho mailbox sending the mail (e.g. sales@<your-domain>)
  *   SMTP_PASSWORD      Zoho app-specific password (NOT the account password —
  *                      generate from Zoho Mail → Settings → Security → App Passwords)
- *   MAIL_FROM          "Infizia Website <sales@infizia.in>" (display name + address)
- *   MAIL_TO            sales@infizia.in (where contact submissions land)
+ *   MAIL_FROM          "Infizia Website <sales@<your-domain>>" (display name + address)
+ *   MAIL_TO            Where contact submissions land (typically same as SMTP_USER)
  *
  * Optional env:
  *   MAIL_REPLY_TO      Falls back to the submitter's email if unset
@@ -24,6 +24,7 @@
  */
 
 import nodemailer from "nodemailer";
+import { SITE } from "@/lib/constants";
 
 type SmtpConfig = {
   host: string;
@@ -99,7 +100,7 @@ function renderHtml(
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0">${rows}</table>
         </td></tr>
         <tr><td style="padding:16px 24px;border-top:1px solid #E2E8F0;background:#F8FAFC;">
-          <p style="margin:0;font-size:11px;color:#94A3B8;">Submitted via the Infizia website — infizia.in</p>
+          <p style="margin:0;font-size:11px;color:#94A3B8;">Submitted via the Infizia website — ${escapeHtml(SITE.domain)}</p>
         </td></tr>
       </table>
     </td></tr>

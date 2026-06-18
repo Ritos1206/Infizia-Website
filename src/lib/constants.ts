@@ -6,13 +6,33 @@
 
 import type { ProductAccent } from "@/lib/product-accents";
 
+/**
+ * SITE-wide identity. Domain / URL / email are env-driven so a future
+ * domain change only needs an env edit + redeploy.
+ *
+ * NEXT_PUBLIC_SITE_DOMAIN  → bare domain (e.g. "infizia.in")
+ * NEXT_PUBLIC_SITE_URL     → full origin (e.g. "https://infizia.in")
+ * NEXT_PUBLIC_SITE_EMAIL   → public contact mailbox (e.g. "sales@infizia.in")
+ *
+ * Fallbacks keep the current production values so dev + existing builds
+ * keep working when the env vars aren't set. Note: NEXT_PUBLIC_* env vars
+ * are inlined into the client bundle at build time — changing them
+ * requires a fresh build.
+ *
+ * IMPORTANT: NEXT_PUBLIC_SITE_EMAIL is the address shown to users on the
+ * site (mailto links, form fallback messages, email body footer). The
+ * Zoho SMTP FROM address is configured separately via SMTP_USER / MAIL_FROM
+ * in .env. If you change the user-facing email, also update the Zoho
+ * mailbox + SMTP env vars to match — otherwise outgoing replies will
+ * come from a different address than the one shown.
+ */
 export const SITE = {
   name: "Infizia",
   tagline: "Infinite Intelligence",
   parent: "Contezza Techno Solution Pvt. Ltd.",
-  domain: "infizia.in",
-  url: "https://infizia.in",
-  email: "sales@infizia.in",
+  domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? "infizia.in",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://infizia.in",
+  email: process.env.NEXT_PUBLIC_SITE_EMAIL ?? "sales@infizia.in",
   description:
     "Infizia builds agentic AI products and the platforms they run on — autonomous systems that perceive, reason, and act across the enterprise. We also deliver trusted Red Hat stack implementations across RHEL, OpenShift, Ansible, and OpenShift AI.",
   short:

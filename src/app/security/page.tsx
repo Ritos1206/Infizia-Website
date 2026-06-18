@@ -406,7 +406,7 @@ export default function SecurityPage() {
     <LegalPage
       kicker="Legal · Security"
       title="Security, by design."
-      intro="A short, honest summary of how we secure the website at infizia.in and the products we deploy for customers — encryption, access, isolation, observability, and how we respond when something goes wrong."
+      intro={`A short, honest summary of how we secure the website at ${SITE.domain} and the products we deploy for customers — encryption, access, isolation, observability, and how we respond when something goes wrong.`}
       lastUpdated="2026-05-30"
       accent="green"
       sections={SECTIONS}

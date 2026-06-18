@@ -24,6 +24,7 @@ import {
 } from "@/lib/contact-schemas";
 import { sendInquiry } from "@/lib/email";
 import { verifyRecaptchaToken } from "@/lib/recaptcha";
+import { SITE } from "@/lib/constants";
 
 /** Force this route to run on the Node.js runtime (nodemailer needs Node APIs). */
 export const runtime = "nodejs";
@@ -150,7 +151,7 @@ export async function POST(request: Request) {
 
   if (!result.ok) {
     return NextResponse.json(
-      { ok: false, error: "We couldn't send your message right now. Please email sales@infizia.in directly or try again in a moment." },
+      { ok: false, error: `We couldn't send your message right now. Please email ${SITE.email} directly or try again in a moment.` },
       { status: 500 },
     );
   }

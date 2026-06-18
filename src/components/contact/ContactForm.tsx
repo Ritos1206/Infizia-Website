@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactInput } from "@/lib/contact-schemas";
 import { getRecaptchaToken } from "@/lib/recaptcha";
+import { SITE } from "@/lib/constants";
 import {
   FormField,
   FormTextarea,
@@ -64,7 +65,7 @@ export function ContactForm() {
         setState("error");
         setErrorMessage(
           json.error ??
-            "Something went wrong sending your message. Please email sales@infizia.in directly.",
+            `Something went wrong sending your message. Please email ${SITE.email} directly.`,
         );
         return;
       }
@@ -74,7 +75,7 @@ export function ContactForm() {
     } catch {
       setState("error");
       setErrorMessage(
-        "We couldn't reach the server. Please check your connection or email sales@infizia.in directly.",
+        `We couldn't reach the server. Please check your connection or email ${SITE.email} directly.`,
       );
     }
   }
@@ -143,10 +144,10 @@ export function ContactForm() {
         <p className="text-xs text-text-faint">
           We respond within 1 business day. Or email{" "}
           <a
-            href="mailto:sales@infizia.in"
+            href={`mailto:${SITE.email}`}
             className="text-brand-teal hover:underline"
           >
-            sales@infizia.in
+            {SITE.email}
           </a>{" "}
           directly.
         </p>

@@ -19,6 +19,7 @@ import {
   type SalesInput,
 } from "@/lib/contact-schemas";
 import { getRecaptchaToken } from "@/lib/recaptcha";
+import { SITE } from "@/lib/constants";
 import {
   FormField,
   FormTextarea,
@@ -73,7 +74,7 @@ export function SalesForm() {
         setState("error");
         setErrorMessage(
           json.error ??
-            "Something went wrong sending your inquiry. Please email sales@infizia.in directly.",
+            `Something went wrong sending your inquiry. Please email ${SITE.email} directly.`,
         );
         return;
       }
@@ -82,7 +83,7 @@ export function SalesForm() {
     } catch {
       setState("error");
       setErrorMessage(
-        "We couldn't reach the server. Please check your connection or email sales@infizia.in directly.",
+        `We couldn't reach the server. Please check your connection or email ${SITE.email} directly.`,
       );
     }
   }
@@ -191,10 +192,10 @@ export function SalesForm() {
         <p className="text-xs text-text-faint">
           Or email{" "}
           <a
-            href="mailto:sales@infizia.in"
+            href={`mailto:${SITE.email}`}
             className="text-brand-teal hover:underline"
           >
-            sales@infizia.in
+            {SITE.email}
           </a>
           .
         </p>
